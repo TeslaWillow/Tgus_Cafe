@@ -1,0 +1,62 @@
+@font-face {
+  font-family: Regular_OpenSans;
+  src: url("../Fonts/Open_Sans/OpenSans-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: Bold_OpenSans;
+  src: url("../Fonts/Open_Sans/OpenSans-Bold.ttf") format("truetype");
+}
+@font-face {
+  font-family: Light_OpenSans;
+  src: url("../Fonts/Open_Sans/OpenSans-Light.ttf") format("truetype");
+}
+@font-face {
+  font-family: SemiBold_OpenSans;
+  src: url("../Fonts/Open_Sans/OpenSans-SemiBold.ttf") format("truetype");
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-size: 16px;
+  font-family: "Regular_OpenSans", sans-serif !important;
+}
+
+img {
+  width: 100%;
+}
+
+header {
+  background: url("../Img/bg.png");
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+  height: 650px;
+}
+header .menu {
+  background: rgba(0, 0, 0, 0) !important;
+}
+header .menu a {
+  color: #FFF !important;
+  border-bottom: 2px solid rgba(255, 255, 255, 0);
+  margin-right: 15px;
+  font-family: "Light_OpenSans";
+  font-size: 1.26rem;
+  transition: 0.26s all;
+}
+header .menu a:hover {
+  border-bottom: 2px solid white;
+}
+header .welcome .w_text {
+  color: #fff;
+}
+header .welcome .w_text h1 {
+  font-family: "SemiBold_OpenSans";
+}
+header .welcome .w_text h2 {
+  font-family: "Light_OpenSans";
+}
+
+/*# sourceMappingURL=styles.css.map */
