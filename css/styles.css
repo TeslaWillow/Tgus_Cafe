@@ -59,4 +59,27 @@ header .welcome .w_text h2 {
   font-family: "Light_OpenSans";
 }
 
+main #jumbotron_1 {
+  background: url("../Img/type.png");
+  position: relative;
+}
+main #jumbotron_1 #thumb_1_about {
+  margin-top: -95px;
+  z-index: 5;
+}
+main #jumbotron_1 #card_1 {
+  position: relative !important;
+  top: -85px;
+}
+main #jumbotron_1 #card_2 article.card {
+  position: relative;
+  top: -65px;
+}
+main .card {
+  padding: 1.5625rem;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+  z-index: 10;
+  margin-bottom: 50px;
+}
+
 /*# sourceMappingURL=styles.css.map */
