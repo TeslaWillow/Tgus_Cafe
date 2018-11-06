@@ -18,8 +18,9 @@ img
 
 header
   background: url("../Img/bg.png")
-  background-position: center
+  background-position: top
   background-size: cover
+  background-attachment: fixed
   width: 100%
   height: 650px
   .menu
@@ -34,7 +35,6 @@ header
       &:hover
           border-bottom: 2px solid rgba($white,1)
   .welcome
-    .logo
     .w_text
         color: $white
         h1
@@ -56,9 +56,46 @@ main
       article.card
         position: relative
         top: -65px
-
+    #menu_out
+      h3
+        color: #FFF
+        font-family: "HomemadeApple"
+      section#menu_in
+        background: url("../Img/dark_wall.png")
+        padding: 30px
+        color: #FFF
+        font-family: "HomemadeApple"
+        border: 5px solid #fff
+        #cafes
+          color: #936737
+        #postres
+          color: #36c69f
+        #bebidas
+          color: #f9ebc1
+        #catrachos
+          color: #c6a136
+  #jumbo_relatos
+    background: #f2f2f2
+    h3
+      font-family: "Light_OpenSans"
+    img
+      border-radius: 100%
+  #jumbo_contacto
+    background: #fff
+    h3
+      font-family: "Light_OpenSans"
   .card
     padding: 1.5625rem
     box-shadow: 0px 0px 5px rgba(#000, 0.5)
     z-index: 10
     margin-bottom: 50px
+    h3
+      font-family: "Light_OpenSans" !important
+    .border
+      margin-bottom: 20px
+      display: block
+      background: #e6da4c
+      width: 10%
+      height: 5px
+  .jumbotron
+    margin-bottom: 0
