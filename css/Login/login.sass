@@ -1,0 +1,48 @@
+@import "fonts"
+
+$font_main: "Regular_OpenSans", sans-serif
+$mf_size: 16px
+$img_route: "../../Img/"
+$tgus_azul: #4071bd
+
+*
+  margin: 0
+  padding: 0
+
+body
+  background: #F2F2F2
+  font-size: $mf_size
+  font-family: $font_main !important
+
+img
+    width: 100%
+
+.container
+  .row
+    box-shadow: 3px 3px 5px rgba(#000,.5)
+    margin-top: 100px
+    #left_background
+      background: url($img_route + "login.jpg")
+      background-size: cover
+      background-position: center
+      padding: 120px 0 120px 0
+      img
+        width: 50%
+    #right_background
+      background: #fff
+      padding: 20px 55px
+      h3
+        font-family: "Light_OpenSans"
+      form
+        input
+          margin-bottom: 20px
+          border: none
+        input[type="text"],input[type="password"]
+          border-bottom: 2px solid rgba(#000, 0.5)
+          &:hover
+            border-bottom: 2px solid rgba(#000, 1)
+        input[type="submit"]
+          background: $tgus_azul
+          color: #fff
+          font-family: "Bold_OpenSans"
+          padding: 10px

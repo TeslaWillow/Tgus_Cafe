@@ -1,0 +1,73 @@
+@font-face {
+  font-family: Regular_OpenSans;
+  src: url("../../Fonts/Open_Sans/OpenSans-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: Bold_OpenSans;
+  src: url("../../Fonts/Open_Sans/OpenSans-Bold.ttf") format("truetype");
+}
+@font-face {
+  font-family: Light_OpenSans;
+  src: url("../../Fonts/Open_Sans/OpenSans-Light.ttf") format("truetype");
+}
+@font-face {
+  font-family: SemiBold_OpenSans;
+  src: url("../../Fonts/Open_Sans/OpenSans-SemiBold.ttf") format("truetype");
+}
+@font-face {
+  font-family: HomemadeApple;
+  src: url("../../Fonts/HomemadeApple/HomemadeApple-Regular.ttf") format("truetype");
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #F2F2F2;
+  font-size: 16px;
+  font-family: "Regular_OpenSans", sans-serif !important;
+}
+
+img {
+  width: 100%;
+}
+
+.container .row {
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+  margin-top: 100px;
+}
+.container .row #left_background {
+  background: url("../../Img/login.jpg");
+  background-size: cover;
+  background-position: center;
+  padding: 120px 0 120px 0;
+}
+.container .row #left_background img {
+  width: 50%;
+}
+.container .row #right_background {
+  background: #fff;
+  padding: 20px 55px;
+}
+.container .row #right_background h3 {
+  font-family: "Light_OpenSans";
+}
+.container .row #right_background form input {
+  margin-bottom: 20px;
+  border: none;
+}
+.container .row #right_background form input[type=text], .container .row #right_background form input[type=password] {
+  border-bottom: 2px solid rgba(0, 0, 0, 0.5);
+}
+.container .row #right_background form input[type=text]:hover, .container .row #right_background form input[type=password]:hover {
+  border-bottom: 2px solid black;
+}
+.container .row #right_background form input[type=submit] {
+  background: #4071bd;
+  color: #fff;
+  font-family: "Bold_OpenSans";
+  padding: 10px;
+}
+
+/*# sourceMappingURL=login.css.map */
