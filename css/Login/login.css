@@ -52,9 +52,10 @@ img {
 }
 .container .row #right_background h3 {
   font-family: "Light_OpenSans";
+  margin-bottom: 50px;
 }
 .container .row #right_background form input {
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   border: none;
 }
 .container .row #right_background form input[type=text], .container .row #right_background form input[type=password] {
@@ -68,6 +69,22 @@ img {
   color: #fff;
   font-family: "Bold_OpenSans";
   padding: 10px;
+  border-radius: 5px;
+}
+.container .row #right_background form input[type=submit]:hover {
+  cursor: pointer;
+}
+.container .row #right_background form a {
+  background: #57332c;
+  color: #fff;
+  font-family: "Bold_OpenSans";
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+  width: 40%;
+}
+.container .row #right_background form a:hover {
+  text-decoration: none;
 }
 
 /*# sourceMappingURL=login.css.map */

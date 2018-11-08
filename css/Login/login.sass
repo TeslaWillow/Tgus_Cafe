@@ -4,6 +4,7 @@ $font_main: "Regular_OpenSans", sans-serif
 $mf_size: 16px
 $img_route: "../../Img/"
 $tgus_azul: #4071bd
+$tgus_cafe: #57332c
 
 *
   margin: 0
@@ -33,9 +34,10 @@ img
       padding: 20px 55px
       h3
         font-family: "Light_OpenSans"
+        margin-bottom: 50px
       form
         input
-          margin-bottom: 20px
+          margin-bottom: 30px
           border: none
         input[type="text"],input[type="password"]
           border-bottom: 2px solid rgba(#000, 0.5)
@@ -46,3 +48,16 @@ img
           color: #fff
           font-family: "Bold_OpenSans"
           padding: 10px
+          border-radius: 5px
+          &:hover
+            cursor: pointer
+        a
+          background: $tgus_cafe
+          color: #fff
+          font-family: "Bold_OpenSans"
+          padding: 10px
+          border-radius: 5px
+          text-align: center
+          width: 40%
+          &:hover
+            text-decoration: none

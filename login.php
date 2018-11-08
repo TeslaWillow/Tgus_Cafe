@@ -19,7 +19,7 @@
             <input type="text" placeholder="Usuario" name="nombre" value="">
             <input type="password" placeholder="Contraseña" name="password" value="">
             <input class="d-flex justify-content-center" type="submit" value="Submit">
-            <a href="index.html">Regresar</a>
+            <a href="index.html">&lt;&lt;   Regresar</a>
           </form>
         </div>
       </div>
