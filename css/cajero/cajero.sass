@@ -1,0 +1,170 @@
+@import "fonts"
+// variables
+$C_header: #612f28
+$azul_claro: #2b7cc4
+$azul_oscuro: #0e4160
+$gris_oscuro: #777
+$rojo: #6d1b1c
+$naranja: #d38f0b
+// Genericos
+*
+  padding: 0
+  margin: 0
+
+body
+  font-size: 16px
+  font-family: "Regular_OpenSans", sans-serif, Arial !important
+  background: #e8e8e8
+
+img
+  vertical-align: top
+  width: 100%
+
+%form_items
+  input[type=text],input[type=date]
+    border: none
+    margin-bottom: 15px
+    border-bottom: 3px solid rgba($gris_oscuro, .8)
+  input[type=radio]
+    margin-right: 5px
+  input[type=submit], button
+    border: none
+    border-radius: 5px
+    color: #fff
+    font-family: "Light_OpenSans"
+    font-size: 1.1rem
+    padding: 10px 20px
+
+.naranja
+  background: $naranja
+  color: #fff
+  margin-left: 30px
+
+.rojo
+  background: $rojo
+  color: #fff
+  margin-left: 30px
+
+
+// Documento
+header
+  background: $C_header !important
+  nav
+    a
+      height: 80px
+      width: 80px
+      img
+        width: 100%
+    div.collapse
+      display: flex
+      flex-direction: row-reverse
+      div.navbar-nav
+        a
+          color: #FFF !important
+          font-size: 1.3rem
+          padding-top: 25px
+          transition: ease all .3s
+          border-bottom: 2px solid rgba(#fff,0)
+          &:hover
+            border-bottom: 2px solid rgba(#fff,1)
+main
+  #blue
+    background: $azul_oscuro
+    padding: 0
+    button
+      border: none
+      background: none
+      color: white
+      display: flex
+      font-family: "Bold_OpenSans"
+      font-size: 0.915rem
+      padding: 7px 0px 7px 5px
+      width: 100%
+    .btn_active
+      background: #fff
+      color: $azul_claro
+  #white
+    background: #fff
+    padding-bottom: 20px
+    // CAJERO
+    #div_registro
+      form
+        input[type=text],input[type=date]
+          border: none
+          margin-bottom: 15px
+          border-bottom: 3px solid rgba($gris_oscuro, .8)
+        input[type=radio]
+          margin-right: 5px
+        input[type=submit], button
+          border: none
+          border-radius: 5px
+          color: #fff
+          font-family: "Light_OpenSans"
+          font-size: 1.1rem
+          padding: 10px 20px
+        input[type=submit]
+          background: $rojo
+          margin-left: 20px
+        button
+          background: $naranja
+    #div_facturacion
+      display: none
+      #texto
+        text-align: center
+      form
+        input[type=text],input[type=date]
+          border: none
+          margin-bottom: 15px
+          border-bottom: 3px solid rgba($gris_oscuro, .8)
+        input[type=submit], button
+          border: none
+          border-radius: 5px
+          color: #fff
+          font-family: "Light_OpenSans"
+          font-size: 1.1rem
+          padding: 10px 20px
+        button
+          background: $rojo
+          color: #fff
+      #sub_totales
+        text-align: right
+    // CONTADOR
+    #div_C_vizualizar_inventario
+      form
+         @extend %form_items
+    #div_C_vizualizar_productos
+      display: none
+      form
+         @extend %form_items
+    #div_C_reportes_contables
+      display: none
+      form
+         @extend %form_items
+    #div_C_control_reportes
+      display: none
+      form
+         @extend %form_items
+    // GERENCIA ADMINISTRATIVA
+    #div_GA_generar_planillas
+      form
+         @extend %form_items
+    #div_GA_validar_reportes
+      display: none
+      form
+         @extend %form_items
+    #div_GA_reportes_administrativos
+      display: none
+      form
+         @extend %form_items
+    // GERENCIA GENERAL
+    #div_GG_validar_reportes_administrativos
+      form
+         @extend %form_items
+    #div_GG_agendar_eventos
+        display: none
+        form
+           @extend %form_items
+    #div_GG_informacion_empleados
+        display: none
+        form
+           @extend %form_items

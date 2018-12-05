@@ -1,0 +1,184 @@
+@font-face {
+  font-family: Regular_OpenSans;
+  src: url("../../Fonts/Open_Sans/OpenSans-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: Bold_OpenSans;
+  src: url("../../Fonts/Open_Sans/OpenSans-Bold.ttf") format("truetype");
+}
+@font-face {
+  font-family: Light_OpenSans;
+  src: url("../../Fonts/Open_Sans/OpenSans-Light.ttf") format("truetype");
+}
+@font-face {
+  font-family: SemiBold_OpenSans;
+  src: url("../../Fonts/Open_Sans/OpenSans-SemiBold.ttf") format("truetype");
+}
+@font-face {
+  font-family: HomemadeApple;
+  src: url("../../Fonts/HomemadeApple/HomemadeApple-Regular.ttf") format("truetype");
+}
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-size: 16px;
+  font-family: "Regular_OpenSans", sans-serif, Arial !important;
+  background: #e8e8e8;
+}
+
+img {
+  vertical-align: top;
+  width: 100%;
+}
+
+main #white #div_GG_informacion_empleados form input[type=text], main #white #div_GG_agendar_eventos form input[type=text], main #white #div_GG_validar_reportes_administrativos form input[type=text], main #white #div_GA_reportes_administrativos form input[type=text], main #white #div_GA_validar_reportes form input[type=text], main #white #div_GA_generar_planillas form input[type=text], main #white #div_C_control_reportes form input[type=text], main #white #div_C_reportes_contables form input[type=text], main #white #div_C_vizualizar_productos form input[type=text], main #white #div_C_vizualizar_inventario form input[type=text], main #white #div_GG_informacion_empleados form input[type=date], main #white #div_GG_agendar_eventos form input[type=date], main #white #div_GG_validar_reportes_administrativos form input[type=date], main #white #div_GA_reportes_administrativos form input[type=date], main #white #div_GA_validar_reportes form input[type=date], main #white #div_GA_generar_planillas form input[type=date], main #white #div_C_control_reportes form input[type=date], main #white #div_C_reportes_contables form input[type=date], main #white #div_C_vizualizar_productos form input[type=date], main #white #div_C_vizualizar_inventario form input[type=date] {
+  border: none;
+  margin-bottom: 15px;
+  border-bottom: 3px solid rgba(119, 119, 119, 0.8);
+}
+main #white #div_GG_informacion_empleados form input[type=radio], main #white #div_GG_agendar_eventos form input[type=radio], main #white #div_GG_validar_reportes_administrativos form input[type=radio], main #white #div_GA_reportes_administrativos form input[type=radio], main #white #div_GA_validar_reportes form input[type=radio], main #white #div_GA_generar_planillas form input[type=radio], main #white #div_C_control_reportes form input[type=radio], main #white #div_C_reportes_contables form input[type=radio], main #white #div_C_vizualizar_productos form input[type=radio], main #white #div_C_vizualizar_inventario form input[type=radio] {
+  margin-right: 5px;
+}
+main #white #div_GG_informacion_empleados form input[type=submit], main #white #div_GG_agendar_eventos form input[type=submit], main #white #div_GG_validar_reportes_administrativos form input[type=submit], main #white #div_GA_reportes_administrativos form input[type=submit], main #white #div_GA_validar_reportes form input[type=submit], main #white #div_GA_generar_planillas form input[type=submit], main #white #div_C_control_reportes form input[type=submit], main #white #div_C_reportes_contables form input[type=submit], main #white #div_C_vizualizar_productos form input[type=submit], main #white #div_C_vizualizar_inventario form input[type=submit], main #white #div_GG_informacion_empleados form button, main #white #div_GG_agendar_eventos form button, main #white #div_GG_validar_reportes_administrativos form button, main #white #div_GA_reportes_administrativos form button, main #white #div_GA_validar_reportes form button, main #white #div_GA_generar_planillas form button, main #white #div_C_control_reportes form button, main #white #div_C_reportes_contables form button, main #white #div_C_vizualizar_productos form button, main #white #div_C_vizualizar_inventario form button {
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  font-family: "Light_OpenSans";
+  font-size: 1.1rem;
+  padding: 10px 20px;
+}
+
+.naranja {
+  background: #d38f0b;
+  color: #fff;
+  margin-left: 30px;
+}
+
+.rojo {
+  background: #6d1b1c;
+  color: #fff;
+  margin-left: 30px;
+}
+
+header {
+  background: #612f28 !important;
+}
+header nav a {
+  height: 80px;
+  width: 80px;
+}
+header nav a img {
+  width: 100%;
+}
+header nav div.collapse {
+  display: flex;
+  flex-direction: row-reverse;
+}
+header nav div.collapse div.navbar-nav a {
+  color: #FFF !important;
+  font-size: 1.3rem;
+  padding-top: 25px;
+  transition: ease all 0.3s;
+  border-bottom: 2px solid rgba(255, 255, 255, 0);
+}
+header nav div.collapse div.navbar-nav a:hover {
+  border-bottom: 2px solid white;
+}
+
+main #blue {
+  background: #0e4160;
+  padding: 0;
+}
+main #blue button {
+  border: none;
+  background: none;
+  color: white;
+  display: flex;
+  font-family: "Bold_OpenSans";
+  font-size: 0.915rem;
+  padding: 7px 0px 7px 5px;
+  width: 100%;
+}
+main #blue .btn_active {
+  background: #fff;
+  color: #2b7cc4;
+}
+main #white {
+  background: #fff;
+  padding-bottom: 20px;
+}
+main #white #div_registro form input[type=text], main #white #div_registro form input[type=date] {
+  border: none;
+  margin-bottom: 15px;
+  border-bottom: 3px solid rgba(119, 119, 119, 0.8);
+}
+main #white #div_registro form input[type=radio] {
+  margin-right: 5px;
+}
+main #white #div_registro form input[type=submit], main #white #div_registro form button {
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  font-family: "Light_OpenSans";
+  font-size: 1.1rem;
+  padding: 10px 20px;
+}
+main #white #div_registro form input[type=submit] {
+  background: #6d1b1c;
+  margin-left: 20px;
+}
+main #white #div_registro form button {
+  background: #d38f0b;
+}
+main #white #div_facturacion {
+  display: none;
+}
+main #white #div_facturacion #texto {
+  text-align: center;
+}
+main #white #div_facturacion form input[type=text], main #white #div_facturacion form input[type=date] {
+  border: none;
+  margin-bottom: 15px;
+  border-bottom: 3px solid rgba(119, 119, 119, 0.8);
+}
+main #white #div_facturacion form input[type=submit], main #white #div_facturacion form button {
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  font-family: "Light_OpenSans";
+  font-size: 1.1rem;
+  padding: 10px 20px;
+}
+main #white #div_facturacion form button {
+  background: #6d1b1c;
+  color: #fff;
+}
+main #white #div_facturacion #sub_totales {
+  text-align: right;
+}
+main #white #div_C_vizualizar_productos {
+  display: none;
+}
+main #white #div_C_reportes_contables {
+  display: none;
+}
+main #white #div_C_control_reportes {
+  display: none;
+}
+main #white #div_GA_validar_reportes {
+  display: none;
+}
+main #white #div_GA_reportes_administrativos {
+  display: none;
+}
+main #white #div_GG_agendar_eventos {
+  display: none;
+}
+main #white #div_GG_informacion_empleados {
+  display: none;
+}
+
+/*# sourceMappingURL=cajero.css.map */
