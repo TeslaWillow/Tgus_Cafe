@@ -3,13 +3,29 @@ require "admin/config.php";
 
 function conexion($bd_config){
   try {
-    $conn = oci_pconnect($bd_config["usuario"], $bd_config["pass"], $bd_config["basedatos"]);
+    $conn = new PDO("mysql:host=localhost;dbname=".$bd_config['basedatos'], $bd_config['usuario'], $bd_config['pass']);
     return $conn;
   }
   catch (Exception $e) {
-    $e = oci_error();
-    trigger_error(htmlentities($e['message'], ENT_QUOTES), E_USER_ERROR);
     return false;
+  }
+}
+
+function acceso_Usuario($user, $pass, $conn){
+  $sent = $conn -> prepare("
+  SELECT A.NOMBRE_USUARIO, A.CONTRASENA, B.TIPO_USUARIO
+  FROM tbl_usuarios A, tbl_tipo_usuario B
+  WHERE A.CODIGO_TIPO_USUARIO = B.CODIGO_TIPO_USUARIO
+  AND A.NOMBRE_USUARIO LIKE '$user'
+  AND A.CONTRASENA = '$pass';
+  ");
+  $sent -> execute();
+  $resultado = $sent -> fetchAll();
+
+  if(!empty($resultado)){
+    if($resultado[0]['NOMBRE_USUARIO'] == $user && $resultado[0]['CONTRASENA'] == $pass){
+      return $resultado;
+    }
   }
 }
 

@@ -2,9 +2,9 @@
 if (!defined('RUTA')) define('RUTA', 'http://localhost/curso_web/Tgus%20Cafe/Tgus_Cafe/');
 
 $bd_config = [
-  'basedatos' => 'localhost/XE',
-  'usuario' => 'oracle',
-  'pass' => 'oracle'
+  'basedatos' => 'tgus_cafe',
+  'usuario' => 'root',
+  'pass' => ''
 ];
 
 $gerente_general = [

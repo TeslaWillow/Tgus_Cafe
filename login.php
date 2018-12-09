@@ -1,17 +1,26 @@
 <?php session_start();
-  require "funciones.php";
   require "admin/config.php";
+  require "funciones.php";
 
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if(isset($_POST["usuario"]) && isset($_POST["password"])){
+      $conn = conexion($bd_config);
+      if(!$conn){
+        header("Location: 404.php");
+      }
+
       $usuario = limpiar_Datos($_POST["usuario"]);
       $pass = limpiar_Datos($_POST["password"]);
-      if(comprobar_Usuario_Temp($usuario, $pass)){
-        $_SESSION["admin"] = $usuario;
-        header('Location:'. RUTA . "admin/" . $usuario . ".php");
+      $resultado = acceso_Usuario($usuario, $pass, $conn);
+
+      if(empty($resultado)){
+        echo "Usuario o Contraseña incorrectos";
+        $conn = null;
+      }else{
+        $_SESSION["admin"] = $resultado[0]['NOMBRE_USUARIO'];
+        header('Location:'. RUTA . "admin/" . $resultado[0]['TIPO_USUARIO'] . ".php");
       }
-      #echo $usuario;
-      #echo $password;
+
     }
   };
 ?>
@@ -35,8 +44,8 @@
           <h3 class="d-flex justify-content-center">Login</h3>
           <!-- FORMULARIO PARA PHP -->
           <form class="d-flex flex-column" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
-            <input type="text" placeholder="Usuario" name="usuario">
-            <input type="password" placeholder="Contraseña" name="password">
+            <input type="text" placeholder="Usuario" name="usuario" required>
+            <input type="password" placeholder="Contraseña" name="password" required>
             <input class="d-flex justify-content-center" type="submit" value="Iniciar sesion">
             <a href="index.html">&lt;&lt;   Regresar</a>
           </form>
