@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="es" dir="ltr">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="<?php echo RUTA; ?>css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="<?php echo RUTA; ?>css/cajero/cajero.css">
+    <link rel="shortcut icon" href="<?php echo RUTA; ?>Img/favicon.ico" type="image/x-icon">
+  	<link rel="icon" href="<?php echo RUTA; ?>Img/favicon.ico" type="image/x-icon">
     <title>Menu Cajero</title>
   </head>
   <body>

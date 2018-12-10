@@ -13,6 +13,7 @@
           </div>
           <!-- panel -->
           <div class="col-md-9" id="white">
+            <!-- REGISTRO DE MOVIMIENTOS  -->
             <div class="mt-5" id="div_registro">
               <!-- Buscador -->
               <form class="" action="" method="post">
