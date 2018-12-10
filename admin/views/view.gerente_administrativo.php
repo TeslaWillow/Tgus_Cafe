@@ -20,53 +20,53 @@
             <div class="mt-5" id="div_GA_generar_planillas">
               <!-- Filtro  -->
               <form class="" action="" method="post">
-                <select name="slct_sucursal" id="slct_sucursal">
-                  <option value="efectivo">Principal</option>
-                  <option value="credito">Secundaria</option>
-                  <option value="debito" selected>Kiosko</option>
-                </select>
-                <div class="dates">
-                  <input id="date" type="date"><span>-</span>
-                  <input id="date" type="date">
+                <!-- Nombre Evento  -->
+                <div class="d-flex flex-row">
+                  <label for="nombre_evento" class="col-2 col-form-label">Nombre evento:</label>
+                  <div class="col-10">
+                    <input class="form-control" type="text" id="nombre_evento" required>
+                  </div>
                 </div>
               <!-- Tabla -->
               <table class="table table-striped mt-3">
                 <thead>
                   <tr>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Edad</th>
-                    <th scope="col">Fecha de Ingreso</th>
-                    <th scope="col">Empleado</th>
+                    <th scope="col">Nombre Evento</th>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Hora inicio</th>
+                    <th scope="col">Hora fin</th>
+                    <th scope="col">Reservado por</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <th scope="row">Mark</th>
-                    <td>40</td>
+                    <th scope="row">1</th>
                     <td>dd/mm/yyyy</td>
-                    <td>si</td>
+                    <td>00:00</td>
+                    <td>00:00</td>
+                    <td>Fulano</td>
                   </tr>
                   <tr>
-                    <th scope="row">Jacob</th>
-                    <td>25</td>
+                    <th scope="row">2</th>
                     <td>dd/mm/yyyy</td>
-                    <td>Si</td>
+                    <td>00:00</td>
+                    <td>00:00</td>
+                    <td>Mengano</td>
                   </tr>
                   <tr>
-                    <th scope="row">Larry</th>
-                    <td>18</td>
+                    <th scope="row">3</th>
                     <td>dd/mm/yyyy</td>
-                    <td>No</td>
+                    <td>00:00</td>
+                    <td>00:00</td>
+                    <td>Sutano</td>
                   </tr>
                 </tbody>
               </table>
               <!-- Botones -->
-                <div class="botones d-flex justify-content-end">
-                  <button type="button" name="nuevo" id="limpiar" class="naranja">Nuevo Reporte</button>
-                  <button type="button" name="generar" id="generar" class="rojo">Generar Reporte</button>
-                  <button type="button" name="exportar" id="exportar" class="rojo">Exportar a Excel</button>
-                  <input type="submit" name="imprimir" value="imprimir" class="rojo">
-                </div>
+              <div class="botones d-flex justify-content-end">
+                <button type="submit" class="btn btn-primary btn-lg btn-block">Buscar</button>
+                <button class="rojo" type="button" name="Imprimir" id="Imprimir">Imprimir</button>
+              </div>
               </form>
             </div>
             <!-- PANEL DE VISUALIZAR PRODUCTOS -->
