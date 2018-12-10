@@ -110,32 +110,6 @@ main #white {
   background: #fff;
   padding-bottom: 20px;
 }
-main #white #div_registro form input[type=text], main #white #div_registro form input[type=date] {
-  border: none;
-  margin-bottom: 15px;
-  border-bottom: 3px solid rgba(119, 119, 119, 0.8);
-}
-main #white #div_registro form input[type=radio] {
-  margin-right: 5px;
-}
-main #white #div_registro form input[type=submit], main #white #div_registro form button {
-  border: none;
-  border-radius: 5px;
-  color: #fff;
-  font-family: "Light_OpenSans";
-  font-size: 1.1rem;
-  padding: 10px 20px;
-}
-main #white #div_registro form input[type=submit] {
-  background: #6d1b1c;
-  margin-left: 20px;
-}
-main #white #div_registro form button {
-  background: #d38f0b;
-}
-main #white #div_facturacion {
-  display: none;
-}
 main #white #div_facturacion #texto {
   text-align: center;
 }
