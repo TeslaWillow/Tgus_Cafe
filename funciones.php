@@ -78,6 +78,18 @@ function get_Codigo_Usuario($conn, $user){
 
   return $resultado[0]["CODIGO_USUARIO"];
 }
+function get_Codigo_Persona($conn, $nombre, $apellido){
+  $sent = $conn -> prepare("
+  SELECT A.CODIGO_PERSONA
+  FROM tbl_personas A
+  WHERE A.NOMBRE LIKE '$nombre'
+  AND A.APELLIDO LIKE '$apellido';
+  ");
+  $sent -> execute();
+  $resultado = $sent -> fetchAll();
+
+  return $resultado[0]["CODIGO_PERSONA"];
+}
 function sanear_Horas($hora24, $minutos){
   $hora24 = (int)$hora24;
   if($hora24 > 12){
@@ -141,5 +153,61 @@ function set_Evento(
   } catch (\Exception $e) {
     echo "Hubo un problema durante la insersion de datos";
   }
+}
+
+// FUNCIONES PARA EL MENU DE GERENTE ADMINISTRATIVO
+function get_Empleados($conn, $nombre_empleado = ""){
+  $sent = $conn -> prepare("
+  SELECT CONCAT(C.NOMBRE, ' ', C.APELLIDO) AS NOMBRE_COMPLETO, A.IDENTIDAD, B.PUESTO_EMPLEADO, A.FECHA_INGRESO, A.SUELDO
+  FROM tbl_empleados A, tbl_puesto_empleado B, tbl_personas C
+  WHERE A.CODIGO_PUESTO_EMPLEADO = B.CODIGO_PUESTO_EMPLEADO AND A.CODIGO_EMPLEADO = C.CODIGO_PERSONA
+  AND C.NOMBRE LIKE '%$nombre_empleado%';
+  ");
+  $sent -> execute();
+  $resultado = $sent -> fetchAll();
+
+  return $resultado;
+}
+// Funcion para SELECT
+function get_Direccion($conn){
+  $sent = $conn -> prepare("
+  SELECT A.CODIGO_DIRECCION, B.TIPO_DIRECCION
+  FROM tbl_direcciones A, tbl_tipo_direccion B;
+  ");
+  $sent -> execute();
+  $resultado = $sent -> fetchAll();
+
+  return $resultado;
+}
+function get_Puesto_Empleado($conn){
+  $sent = $conn -> prepare("
+  SELECT *
+  FROM tbl_puesto_empleado;
+  ");
+  $sent -> execute();
+  $resultado = $sent -> fetchAll();
+
+  return $resultado;
+}
+// Funcion set EMPLEADOS
+function set_empleado($conn, $nombre_empleado, $apellido_empleado, $codigo_direccion, $ID_empleado ,$codigo_puesto, $sueldo, $fecha_ingreso){
+  try {
+    $sent_persona = $conn -> prepare("
+    INSERT INTO `tbl_personas` (`CODIGO_PERSONA`, `NOMBRE`, `APELLIDO`, `CODIGO_DIRECCION`)
+    VALUES (NULL, '$nombre_empleado', '$apellido_empleado', '$codigo_direccion');
+    ");
+    $sent_persona -> execute();
+
+    $codigo_persona = get_Codigo_Persona($conn, $nombre_empleado, $apellido_empleado);
+    $sent_empleado = $conn -> prepare("
+      INSERT INTO `tbl_empleados` (`CODIGO_EMPLEADO`, `CODIGO_PUESTO_EMPLEADO`, `IDENTIDAD`, `SUELDO`, `FECHA_INGRESO`)
+      VALUES ('$codigo_persona', '$codigo_puesto', '$ID_empleado', '$sueldo', '$fecha_ingreso')
+    ");
+    $sent_empleado -> execute();
+  } catch (\Exception $e) {
+    echo "Ha ocurrido un error durante la ejecucion de la insersion de datos";
+  }
+
+
 }
 ?>

@@ -121,7 +121,7 @@
               </div>
               <!-- Botones -->
               <div class="botones d-flex justify-content-center mt-5">
-                <button type="submit" class="btn btn-danger btn-lg btn-block" name="btn_insertar_evento" id="btn_insertar_evento" value="1">Submit</button>
+                <button type="submit" class="btn btn-danger btn-lg btn-block" name="btn_insertar_evento" id="btn_insertar_evento" value="1">Agregar Empleado</button>
               </div>
               </form>
             </div>

@@ -13,7 +13,7 @@
           </div>
           <!-- panel -->
           <div class="col-md-9" id="white">
-            <!-- PANEL DE VISUALIZAR PRODUCTOS -->
+            <!-- PANEL DE VISUALIZAR EMPLEADOS -->
             <div class="mt-5" id="div_GA_validar_reportes">
               <!-- Filtro  -->
               <form class="" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
@@ -21,7 +21,7 @@
                 <div class="d-flex flex-row">
                   <label for="nombre_empleado" class="col-2 col-form-label">Nombre empleado:</label>
                   <div class="col-10">
-                    <input class="form-control" type="text" id="nombre_empleado" required>
+                    <input class="form-control" type="text" id="nombre_empleado" name="nombre_empleado">
                   </div>
                 </div>
               <!-- Tabla -->
@@ -36,27 +36,15 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <th scope="row">Lucas</th>
-                    <td>0801199614779</td>
-                    <td>Mesero</td>
-                    <td>dd/mm/yyyy</td>
-                    <td>10000</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Lucas</th>
-                    <td>0801199614779</td>
-                    <td>Mesero</td>
-                    <td>dd/mm/yyyy</td>
-                    <td>10000</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Lucas</th>
-                    <td>0801199614779</td>
-                    <td>Mesero</td>
-                    <td>dd/mm/yyyy</td>
-                    <td>10000</td>
-                  </tr>
+                  <?php foreach ($resultado_empleados as $row): ?>
+                    <tr>
+                      <td><?php echo $row["NOMBRE_COMPLETO"]; ?></td>
+                      <td><?php echo $row["IDENTIDAD"]; ?></td>
+                      <td><?php echo $row["PUESTO_EMPLEADO"]; ?></td>
+                      <td><?php echo $row["FECHA_INGRESO"]; ?></td>
+                      <td><?php echo $row["SUELDO"]; ?></td>
+                    </tr>
+                  <?php endforeach; ?>
                 </tbody>
               </table>
               <!-- Botones -->
@@ -66,7 +54,7 @@
               </div>
               </form>
             </div>
-            <!-- PANEL VISUALIZAR INVENTARIO -->
+            <!-- PANEL AGREGAR EMPLEADO -->
             <div class="mt-5" id="div_GA_generar_planillas">
               <!-- Filtro  -->
               <form class="" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
@@ -79,7 +67,7 @@
                       <input class="form-control" type="text" id="nombre_empleado" name="nombre_empleado" required>
                     </div>
                   </div>
-                  <!-- Nombre Empleado -->
+                  <!-- Apellido Empleado -->
                   <div class="d-flex flex-row">
                     <label for="apellido_empleado" class="col-2 col-form-label">Apellido empleado:</label>
                     <div class="col-10">
@@ -93,24 +81,38 @@
                       <input class="form-control" type="text" id="id_empleado" name="id_empleado" required>
                     </div>
                   </div>
+                  <!-- Fecha Ingreso -->
+                  <div class="d-flex flex-row">
+                    <label for="fecha_ingreso" class="col-2 col-form-label">Fecha ingreso: </label>
+                    <div class="col-10">
+                      <input class="form-control" type="date" value="0000-00-00" id="fecha_ingreso" name="fecha_ingreso">
+                    </div>
+                  </div>
+                  <!-- Sueldo empleado -->
+                  <div class="d-flex flex-row">
+                    <label for="sueldo" class="col-2 col-form-label">Sueldo:</label>
+                    <div class="col-10">
+                      <input class="form-control" type="text" id="sueldo" name="sueldo" required>
+                    </div>
+                  </div>
                   <!-- Dirección -->
                   <div class="d-flex flex-row mt-3">
                     <label for="hora_fin" class="col-2 col-form-label">Dirección: </label>
-                    <select name="slct_tipo_evento" id="slct_tipo_evento" class="custom-select col-10 mt-2" required>
-                      <option value="" disabled selected>Seleccione la dirección del empleado</option>
-                      <option value="formal">Col. tal</option>
-                      <option value="entrevista">Aquí</option>
-                      <option value="birthday" selected>Acá</option>
+                    <select name="slct_direccion" id="slct_direccion" class="custom-select col-10 mt-2" required>
+                      <option value="" disabled selected>Seleccione tipo de dirección del empleado</option>
+                      <?php foreach ($slct_direccion as $row): ?>
+                        <option value="<?php echo $row["CODIGO_DIRECCION"] ?>"><?php echo $row["TIPO_DIRECCION"]; ?></option>
+                      <?php endforeach; ?>
                     </select>
                   </div>
                   <!-- Puesto Empleado -->
                   <div class="d-flex flex-row mt-3">
                     <label for="hora_fin" class="col-2 col-form-label">Puesto empleado: </label>
-                    <select name="slct_tipo_evento" id="slct_tipo_evento" class="custom-select col-10 mt-2" required>
+                    <select name="slct_puesto_empleado" id="slct_tipo_evento" class="custom-select col-10 mt-2" required>
                       <option value="" disabled selected>¿Qué puesto desempeñara el empleado?</option>
-                      <option value="fulano">Destructor</option>
-                      <option value="mengano">Suicida</option>
-                      <option value="sutano" selected>Mesero... explosivo</option>
+                      <?php foreach ($slct_puesto as $row): ?>
+                        <option value="<?php echo $row["CODIGO_PUESTO_EMPLEADO"] ?>"><?php echo $row["PUESTO_EMPLEADO"]; ?></option>
+                      <?php endforeach; ?>
                     </select>
                   </div>
                 </div>
