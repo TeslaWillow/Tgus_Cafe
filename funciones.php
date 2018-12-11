@@ -67,6 +67,30 @@ function comprobar_Usuario_Temp($usuario, $pass){
   return $respuesta;
 }
 
+function get_Codigo_Usuario($conn, $user){
+  $sent = $conn -> prepare("
+  SELECT A.CODIGO_USUARIO
+  FROM TBL_USUARIOS A
+  WHERE A.NOMBRE_USUARIO LIKE '$user';
+  ");
+  $sent -> execute();
+  $resultado = $sent -> fetchAll();
+
+  return $resultado[0]["CODIGO_USUARIO"];
+}
+function sanear_Horas($hora24, $minutos){
+  $hora24 = (int)$hora24;
+  if($hora24 > 12){
+    $hora24 = $hora24 - 12;
+    $hora24 = (string)$hora24;
+    $hora_final = $hora24.":".$minutos." pm";
+  }else{
+    $hora_final = $hora24.":".$minutos." am";
+  }
+
+  return $hora_final;
+}
+//FUNCIONES PARA EL MENU DE GERENTE GENERAL
 function get_Eventos($conn, $nombre_evento=""){
   $sent = $conn -> prepare("
   SELECT A.NOMBRE_EVENTO, A.FECHA_EVENTO, A.HORA_INICIO, A.HORA_FIN, C.NOMBRE
@@ -80,8 +104,8 @@ function get_Eventos($conn, $nombre_evento=""){
 
   return $resultado;
 }
-
-function get_Tipo_Evento($conn){
+// Funciones para SELECTS
+function get_Reservado_Por($conn){
   $sent = $conn -> prepare("
   SELECT A.CODIGO_CLIENTE, CONCAT(B.NOMBRE, ' ', B.APELLIDO) AS NOMBRE_COMPLETO
   FROM tbl_clientes A, tbl_personas B
@@ -92,6 +116,30 @@ function get_Tipo_Evento($conn){
 
   return $resultado;
 }
+function get_Tipo_Evento($conn){
+  $sent = $conn -> prepare("
+  SELECT A.CODIGO_TIPO_EVENTO, A.TIPO_EVENTO
+  FROM tbl_tipo_evento A;
+  ");
+  $sent -> execute();
+  $resultado = $sent -> fetchAll();
 
-
+  return $resultado;
+}
+// Funcion para insertar en la BD
+function set_Evento(
+  $conn, $nombre_evento, $fecha_evento,
+  $hora_inicio, $hora_fin, $ID_user,
+  $ID_cliente, $ID_tipo_evento
+){
+  try {
+    $sent = $conn -> prepare("
+    INSERT INTO tbl_eventos (`CODIGO_EVENTO`, `NOMBRE_EVENTO`, `FECHA_EVENTO`, `HORA_INICIO`, `HORA_FIN`, `CODIGO_USUARIO`, `CODIGO_CLIENTE`, `CODIGO_TIPO_EVENTO`)
+    VALUES (NULL, '$nombre_evento', '$fecha_evento', '$hora_inicio', '$hora_fin', '$ID_user', '$ID_cliente', '$ID_tipo_evento');
+    ");
+    $sent -> execute();
+  } catch (\Exception $e) {
+    echo "Hubo un problema durante la insersion de datos";
+  }
+}
 ?>

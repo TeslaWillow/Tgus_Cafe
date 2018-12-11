@@ -69,9 +69,9 @@
               <div class="d-flex flex-column">
                 <!-- Nombre Evento -->
                 <div class="d-flex flex-row">
-                  <label for="nombre_evento" class="col-2 col-form-label">Nombre evento:</label>
+                  <label for="nuevo_nombre_evento" class="col-2 col-form-label">Nombre evento:</label>
                   <div class="col-10">
-                    <input class="form-control" type="text" id="nombre_evento" required>
+                    <input class="form-control" type="text" id="nuevo_nombre_evento" name="nuevo_nombre_evento" required>
                   </div>
                 </div>
                 <!-- Fecha Evento -->
@@ -96,20 +96,22 @@
                 </div>
                 <!-- Tipo de Evento -->
                 <div class="d-flex flex-row mt-3">
-                  <label for="hora_fin" class="col-2 col-form-label">Tipo de Evento: </label>
+                  <label for="slct_tipo_evento" class="col-2 col-form-label">Tipo de Evento: </label>
                   <select name="slct_tipo_evento" id="slct_tipo_evento" class="custom-select col-10 mt-2" required>
                     <option value="" disabled selected>Seleccione el tipo de evento</option>
-                    <option value="formal">Formal</option>
-                    <option value="entrevista">Entrevista</option>
-                    <option value="birthday" selected>Birthday</option>
+                    <?php foreach ($resultado_slct_tipo_evento as $row): ?>
+                      <option value="<?php echo $row["CODIGO_TIPO_EVENTO"] ?>">
+                        <?php echo $row["TIPO_EVENTO"] ?>
+                      </option>
+                    <?php endforeach; ?>
                   </select>
                 </div>
                 <!-- Reservado por -->
                 <div class="d-flex flex-row mt-3">
-                  <label for="hora_fin" class="col-2 col-form-label">Reservado por: </label>
-                  <select name="slct_tipo_evento" id="slct_tipo_evento" class="custom-select col-10 mt-2" required>
+                  <label for="slct_reservado_por" class="col-2 col-form-label">Reservado por: </label>
+                  <select name="slct_reservado_por" id="slct_reservado_por" class="custom-select col-10 mt-2" required>
                     <option value="" disabled selected>¿Quién reserva el evento?</option>
-                    <?php foreach ($resultado_slct_tipo_evento as $row): ?>
+                    <?php foreach ($resultado_slct_reservado_por as $row): ?>
                       <option value="<?php echo $row["CODIGO_CLIENTE"] ?>">
                         <?php echo $row["NOMBRE_COMPLETO"] ?>
                       </option>
@@ -119,7 +121,7 @@
               </div>
               <!-- Botones -->
               <div class="botones d-flex justify-content-center mt-5">
-                <button type="submit" class="btn btn-danger btn-lg btn-block">Submit</button>
+                <button type="submit" class="btn btn-danger btn-lg btn-block" name="btn_insertar_evento" id="btn_insertar_evento" value="1">Submit</button>
               </div>
               </form>
             </div>
