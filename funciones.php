@@ -67,5 +67,31 @@ function comprobar_Usuario_Temp($usuario, $pass){
   return $respuesta;
 }
 
+function get_Eventos($conn, $nombre_evento=""){
+  $sent = $conn -> prepare("
+  SELECT A.NOMBRE_EVENTO, A.FECHA_EVENTO, A.HORA_INICIO, A.HORA_FIN, C.NOMBRE
+  FROM tbl_eventos A, tbl_clientes B, tbl_personas C
+  WHERE A.CODIGO_CLIENTE = B.CODIGO_CLIENTE
+  AND B.CODIGO_CLIENTE = C.CODIGO_PERSONA
+  AND A.NOMBRE_EVENTO LIKE '%$nombre_evento%';
+  ");
+  $sent -> execute();
+  $resultado = $sent -> fetchAll();
+
+  return $resultado;
+}
+
+function get_Tipo_Evento($conn){
+  $sent = $conn -> prepare("
+  SELECT A.CODIGO_CLIENTE, CONCAT(B.NOMBRE, ' ', B.APELLIDO) AS NOMBRE_COMPLETO
+  FROM tbl_clientes A, tbl_personas B
+  WHERE A.CODIGO_CLIENTE = B.CODIGO_PERSONA;
+  ");
+  $sent -> execute();
+  $resultado = $sent -> fetchAll();
+
+  return $resultado;
+}
+
 
 ?>

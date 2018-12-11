@@ -13,7 +13,7 @@
             <!-- PANEL VISUALIZAR REPORTE VENTAS -->
             <div class="mt-5" id="div_C_vizualizar_inventario">
               <!-- Filtro  -->
-              <form class="" action="" method="post">
+              <form class="" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
                 <!-- Nombre Evento  -->
                 <div class="d-flex flex-row">
                   <label for="nombre_evento" class="col-2 col-form-label">Nombre producto:</label>

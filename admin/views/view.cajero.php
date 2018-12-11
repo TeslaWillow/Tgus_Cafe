@@ -23,7 +23,7 @@
                   <p>CIA: 1A3F6 - 56A10B - BB4684 - A69C4F - FA45E5 -75</p>
                 </div>
                 <!-- CAMPOS VARIABLES  -->
-                <form class="mt-5" action="" method="post">
+                <form class="mt-5" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
                 <!-- N° factura y Fecha emision -->
                 <div class="d-flex flex-row">
                   <label for="numero_factura" class="col-2 col-form-label">N° de Factura:</label>

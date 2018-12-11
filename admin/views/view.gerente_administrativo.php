@@ -16,7 +16,7 @@
             <!-- PANEL DE VISUALIZAR PRODUCTOS -->
             <div class="mt-5" id="div_GA_validar_reportes">
               <!-- Filtro  -->
-              <form class="" action="" method="post">
+              <form class="" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
                 <!-- Ver Empleado  -->
                 <div class="d-flex flex-row">
                   <label for="nombre_empleado" class="col-2 col-form-label">Nombre empleado:</label>
@@ -69,7 +69,7 @@
             <!-- PANEL VISUALIZAR INVENTARIO -->
             <div class="mt-5" id="div_GA_generar_planillas">
               <!-- Filtro  -->
-              <form class="" action="" method="post">
+              <form class="" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
                 <!-- FORMULARIO -->
                 <div class="d-flex flex-column">
                   <!-- Nombre Empleado -->
