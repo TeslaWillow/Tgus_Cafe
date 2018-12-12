@@ -17,7 +17,7 @@
         echo "Usuario o Contraseña incorrectos";
         $conn = null;
       }else{
-        $_SESSION["admin"] = $resultado[0]['NOMBRE_USUARIO'];
+        $_SESSION["admin"] = $arrayName = array('NOMBRE' => $resultado[0]['NOMBRE_USUARIO'], 'ROL' => $resultado[0]['TIPO_USUARIO']);
         header('Location:'. RUTA . "admin/" . $resultado[0]['TIPO_USUARIO'] . ".php");
       }
 

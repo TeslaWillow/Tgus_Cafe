@@ -2,13 +2,13 @@
   require "config.php";
   require "../funciones.php";
 
-  if(!$_SESSION["admin"]){
+  if(!$_SESSION["admin"]["ROL"] != "gerente_general"){
     header("Location: ../login.php");
   }
   $conn = conexion($bd_config);
   $user = $_SESSION["admin"];
   if(!$conn){
-    header("Location: 404.php");
+    header("Location: ../404.php");
   }
   // VARIABLES PARA: TABLAS
   $resultado_eventos = get_Eventos($conn);

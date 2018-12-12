@@ -52,7 +52,7 @@
                 <!-- Producto y Cantidad  -->
                 <div class="d-flex flex-row">
                   <label for="slct_producto" class="col-2 col-form-label">Seleccione producto: </label>
-                  <select name="slct_producto" id="slct_producto" class="custom-select col-4 mt-2" required>
+                  <select name="slct_producto" id="slct_producto" class="custom-select col-4 mt-2" onchange="myNewFunction(this);"  required>
                     <option value="" disabled selected>Seleccione producto de la lista</option>
                     <?php foreach ($slct_producto as $row): ?>
                       <option value="<?php echo $row["CODIGO_PRODUCTO"]; ?>">
@@ -121,5 +121,6 @@
 
     <script type="text/javascript" src="<?php echo RUTA; ?>Scripts/bootstrap.min.js"></script>
     <script type="text/javascript" src="<?php echo RUTA; ?>Scripts/hide.js"></script>
+    <script type="text/javascript" src="<?php echo RUTA; ?>Scripts/json.js"></script>
   </body>
 </html>
