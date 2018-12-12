@@ -54,9 +54,11 @@
                   <label for="slct_producto" class="col-2 col-form-label">Seleccione producto: </label>
                   <select name="slct_producto" id="slct_producto" class="custom-select col-4 mt-2" required>
                     <option value="" disabled selected>Seleccione producto de la lista</option>
-                    <option value="formal">Citrolax</option>
-                    <option value="entrevista">Latte</option>
-                    <option value="birthday" selected>Moccha</option>
+                    <?php foreach ($slct_producto as $row): ?>
+                      <option value="<?php echo $row["CODIGO_PRODUCTO"]; ?>">
+                        <?php echo $row["NOMBRE_PRODUCTO"]; ?>
+                      </option>
+                    <?php endforeach; ?>
                   </select>
                   <label for="cantidad" class="col-2 col-form-label">Cantidad: </label>
                   <input  class="form-control col-4" type="number" name="cantidad" id="cantidad" min="1" max="1000" required>
@@ -67,7 +69,7 @@
                   <div class="col-4">
                     <input class="form-control" type="text" id="nombre_cliente" name="nombre_cliente" value="">
                   </div>
-                  <button class="btn btn-primary col-5" type="button" name="button">Agregar Producto</button>
+                  <button class="btn btn-primary col-5" type="submit" name="agregar">Agregar Producto</button>
                 </div>
                 <!-- Tabla -->
                 <div class="row mt-5">
@@ -94,12 +96,6 @@
                           <td>3</td>
                           <td>100</td>
                         </tr>
-                        <tr>
-                          <th scope="row">Matate</th>
-                          <td>algo</td>
-                          <td>10</td>
-                          <td>100</td>
-                        </tr>
                       </tbody>
                     </table>
                   </div>
@@ -111,7 +107,7 @@
                     <p>ISV 15%: <span>000000 L.</span></p>
                     <p>Total a pagar: <span>000000 L.</span></p>
                     <!-- Botones -->
-                    <button type="submit" name="Imprimir">Imprimir</button>
+                    <button type="submit" name="imprimir">Imprimir</button>
                   </div>
                 </div>
                 </form>

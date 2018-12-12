@@ -1,5 +1,4 @@
-<?php session_destriod();
-  session_start();
+<?php session_start();
   require "admin/config.php";
   require "funciones.php";
 

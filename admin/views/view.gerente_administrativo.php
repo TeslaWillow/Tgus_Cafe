@@ -57,7 +57,7 @@
             <!-- PANEL AGREGAR EMPLEADO -->
             <div class="mt-5" id="div_GA_generar_planillas">
               <!-- Filtro  -->
-              <form class="" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
+              <form class="" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post" id="agregar_empleado">
                 <!-- FORMULARIO -->
                 <div class="d-flex flex-column">
                   <!-- Nombre Empleado -->
@@ -118,7 +118,7 @@
                 </div>
               <!-- Botones -->
                 <div class="botones d-flex justify-content-end">
-                  <button type="button" name="limpiar" id="limpiar" class="naranja">Limpiar</button>
+                  <button type="button" name="limpiar" id="limpiar" class="naranja"  onclick="limpiar_Formulario()">Limpiar</button>
                   <button type="submit" name="btn_crear_empleado" id="btn_crear_empleado" class="rojo">Crear empleado</button>
                 </div>
               </form>

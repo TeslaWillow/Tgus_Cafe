@@ -16,9 +16,9 @@
               <form class="" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
                 <!-- Nombre Evento  -->
                 <div class="d-flex flex-row">
-                  <label for="nombre_evento" class="col-2 col-form-label">Nombre producto:</label>
+                  <label for="nombre_producto" class="col-2 col-form-label">Nombre producto:</label>
                   <div class="col-10">
-                    <input class="form-control" type="text" id="nombre_evento" required>
+                    <input class="form-control" type="text" id="nombre_producto" name="nombre_producto">
                   </div>
                 </div>
               <!-- Tabla -->
@@ -32,24 +32,14 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <th scope="row">Metronidazol</th>
-                    <td>50</td>
-                    <td>5</td>
-                    <td>100</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Tap-On</th>
-                    <td>4</td>
-                    <td>3</td>
-                    <td>12</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Citrulax</th>
-                    <td>10</td>
-                    <td>10</td>
-                    <td>100</td>
-                  </tr>
+                  <?php foreach ($resultado_ventas as $row): ?>
+                    <tr>
+                      <th><?php ECHO $row["NOMBRE_PRODUCTO"]; ?></th>
+                      <td><?php ECHO $row["CANTIDAD"]; ?></td>
+                      <td><?php ECHO $row["PRECIO_PRODUCTO"]; ?></td>
+                      <td><?php ECHO $row["TOTAL_VENTAS"]; ?></td>
+                    </tr>
+                  <?php endforeach; ?>
                 </tbody>
               </table>
               <!-- Botones -->

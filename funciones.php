@@ -102,6 +102,8 @@ function sanear_Horas($hora24, $minutos){
 
   return $hora_final;
 }
+//-----------------------------------------------------------
+//-----------------------------------------------------------
 //FUNCIONES PARA EL MENU DE GERENTE GENERAL
 function get_Eventos($conn, $nombre_evento=""){
   $sent = $conn -> prepare("
@@ -154,7 +156,8 @@ function set_Evento(
     echo "Hubo un problema durante la insersion de datos";
   }
 }
-
+//-----------------------------------------------------------
+//-----------------------------------------------------------
 // FUNCIONES PARA EL MENU DE GERENTE ADMINISTRATIVO
 function get_Empleados($conn, $nombre_empleado = ""){
   $sent = $conn -> prepare("
@@ -210,4 +213,62 @@ function set_empleado($conn, $nombre_empleado, $apellido_empleado, $codigo_direc
 
 
 }
+//-----------------------------------------------------------
+//-----------------------------------------------------------
+//FUNCIONES PARA EL MENU DE CONTADOR
+function get_Reporte_Ventas($conn, $nombre_producto = ""){
+  $sent = $conn -> prepare("
+  SELECT A.NOMBRE_PRODUCTO, COUNT(B.CODIGO_PRODUCTO) AS CANTIDAD, A.PRECIO_PRODUCTO, SUM(A.PRECIO_PRODUCTO) AS TOTAL_VENTAS
+  FROM tbl_productos A, tbl_productos_x_facturas B, tbl_facturas C
+  WHERE A.CODIGO_PRODUCTO = B.CODIGO_PRODUCTO
+  AND B.CODIGO_FACTURA = C.CODIGO_FACTURA
+  AND A.NOMBRE_PRODUCTO LIKE '%$nombre_producto%'
+  GROUP BY A.CODIGO_PRODUCTO;
+  ");
+  $sent -> execute();
+  $resultado = $sent -> fetchAll();
+
+  return $resultado;
+}
+//-----------------------------------------------------------
+//-----------------------------------------------------------
+//FUNCIONES PARA CAJERO
+function set_Factura($conn, $fecha, $sub_total, $impuesto, $total, $codigo_usuario, $codigo_producto, $nueva_factura){
+  try {
+
+      $sent_factura = $conn -> prepare("
+      INSERT INTO `tbl_facturas` (`CODIGO_FACTURA`, `FECHA`, `SUBTOTAL`, `IMPUESTO`, `TOTAL`, `CODIGO_USUARIO`)
+      VALUES (NULL, '2018-12-01', '145', '10', '165', '4');
+      ");
+      $sent_factura -> execute();
+      $codigo_factura = $sent_factura -> fetchAll();
+
+      $codigo_factura = $codigo_factura[0]["CODIGO_FACTURA"];
+
+      $sent_factura_x_producto = $conn -> prepare("
+      INSERT INTO `tbl_productos_x_facturas` (`CODIGO_PRODUCTO`, `CODIGO_FACTURA`)
+      VALUES ('$codigo_producto', '$codigo_factura');
+      "
+      );
+      $sent_factura_x_producto -> execute();
+
+
+  } catch (\Exception $e) {
+    echo "Hubo un error al ejecutar la insersion";
+  }
+
+}
+// Funciones para SELECTS
+function get_Producto($conn){
+  $sent = $conn -> prepare("
+  SELECT A.CODIGO_PRODUCTO, A.NOMBRE_PRODUCTO
+  FROM tbl_productos A;
+  ");
+  $sent -> execute();
+  $resultado = $sent -> fetchAll();
+
+  return $resultado;
+}
+
+
 ?>

@@ -19,3 +19,7 @@ function toggle_Validar_Reportes() {
   gen_plan.style.display = "none";
   val_rep.style.display = "block";
 }
+
+function limpiar_Formulario(){
+    document.getElementById("agregar_empleado").reset();
+}
