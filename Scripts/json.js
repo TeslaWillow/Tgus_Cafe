@@ -14,6 +14,13 @@ var cajero,
     impuesto,
     total;
 
+function get_Precio(datos_productos){
+  for(var i = 0; i < datos_productos.length; i++){
+    if(datos_productos[i].NOMBRE == producto){
+      return datos_productos[i].PRECIO;
+    }
+  }
+}
 function cargarProductos(){
   var peticion = new XMLHttpRequest();
   peticion.open('GET','../admin/ajax.php');
@@ -22,20 +29,37 @@ function cargarProductos(){
     var datos_productos = JSON.parse(peticion.responseText);
     if(datos_productos.error){
       console.log("Hubo un problema para traer los datos");
-    }else{
-      for(var i = 0; i < datos_productos.length; i++){
+    }
+    else{
+      // se llenan los datos que iran dentro de la tabla
+      producto = slct_productos.options[slct_productos.selectedIndex].text;
+      cantidad = inpt_cantidad.value;
+      precio = get_Precio(datos_productos);
+      total = cantidad * Number(precio);
+      //crea una tabla vacia
+      var table_row = document.createElement("tr");
+      //Ingresa los elementos a la tabla
+      table_row.innerHTML += ("<th>" + producto + "</th>");
+      table_row.innerHTML += ("<td>" + precio + " L." + "</td>");
+      table_row.innerHTML += ("<td>" + cantidad + "</td>");
+      table_row.innerHTML += ("<td>" + total + " L." + "</td>");
+      //Insertar la fila a la tabla 
+      tbl_productos.appendChild(table_row);
+
+/*    for(var i = 0; i < datos_productos.length; i++){
         var table_row = document.createElement("tr");
         table_row.innerHTML += ("<td>" + datos_productos[i].ID + "</td>");
         table_row.innerHTML += ("<td>" + datos_productos[i].NOMBRE + "</td>");
         table_row.innerHTML += ("<td>" + datos_productos[i].PRECIO + "</td>");
         table_row.innerHTML += ("<td>" + datos_productos[i].PRECIO*5 + "</td>");
         tbl_productos.appendChild(table_row);
-      }
-    }
+      } 
+*/
+    } 
+ 
   };
 
   peticion.send();
-  return datos_productos;
 };
 btn_agregar.addEventListener('click', function(){
   cargarProductos();

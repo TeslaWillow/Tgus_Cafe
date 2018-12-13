@@ -71,6 +71,7 @@
                 <div class="row mt-5">
                   <div class="col-md-12">
                     <table class="table table-striped">
+                    <!-- Header de la tabla -->
                       <thead>
                         <tr>
                           <th scope="col">Producto</th>
@@ -79,19 +80,8 @@
                           <th scope="col">Total</th>
                         </tr>
                       </thead>
+                      <!-- Donde se insertaran los productos -->
                       <tbody  id="tbl_lista_productos">
-                        <tr>
-                          <th scope="row">Citrolax</th>
-                          <td>algo</td>
-                          <td>5</td>
-                          <td>100</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">Patate</th>
-                          <td>algo</td>
-                          <td>3</td>
-                          <td>100</td>
-                        </tr>
                       </tbody>
                     </table>
                   </div>
