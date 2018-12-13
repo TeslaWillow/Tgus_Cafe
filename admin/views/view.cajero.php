@@ -23,23 +23,19 @@
                   <p>CIA: 1A3F6 - 56A10B - BB4684 - A69C4F - FA45E5 -75</p>
                 </div>
                 <!-- CAMPOS VARIABLES  -->
-                <form class="mt-5" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
-                <!-- N° factura y Fecha emision -->
+                <form class="mt-5" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post" id="form_facturar">
+                <!-- Fecha emision -->
                 <div class="d-flex flex-row">
-                  <label for="numero_factura" class="col-2 col-form-label">N° de Factura:</label>
-                  <div class="col-4">
-                    <input class="form-control" type="text" id="numero_factura" disabled>
-                  </div>
-                  <label for="numero_factura" class="col-2 col-form-label">Fecha de emisión: </label>
-                  <div class="col-4">
-                    <input class="form-control" type="text" id="numero_factura" disabled>
+                  <label for="fecha_emision" class="col-2 col-form-label">Fecha de emisión: </label>
+                  <div class="col-10">
+                    <input class="form-control" type="text" id="fecha_emision" value="<?php ECHO $fecha;?>" disabled>
                   </div>
                 </div>
                 <!-- Nombre cajero y forma de pago  -->
                 <div class="d-flex flex-row">
-                  <label for="cajero" class="col-2 col-form-label">Cajero:</label>
+                  <label for="cajero" class="col-2 col-form-label">Cajero/a:</label>
                   <div class="col-4">
-                    <input class="form-control" type="text" id="cajero" name="cajero" value="Jorge" disabled>
+                    <input class="form-control" type="text" id="cajero" name="cajero" value="<?php ECHO $nombre_usuario;?>" disabled>
                   </div>
                   <label for="forma_pago" class="col-2 col-form-label">Forma de pago: </label>
                   <select name="forma_pago" id="forma_pago" class="custom-select col-4 mt-2" required>
@@ -52,7 +48,7 @@
                 <!-- Producto y Cantidad  -->
                 <div class="d-flex flex-row">
                   <label for="slct_producto" class="col-2 col-form-label">Seleccione producto: </label>
-                  <select name="slct_producto" id="slct_producto" class="custom-select col-4 mt-2" onchange="myNewFunction(this);"  required>
+                  <select name="slct_producto" id="slct_producto" class="custom-select col-4 mt-2" required>
                     <option value="" disabled selected>Seleccione producto de la lista</option>
                     <?php foreach ($slct_producto as $row): ?>
                       <option value="<?php echo $row["CODIGO_PRODUCTO"]; ?>">
@@ -69,7 +65,7 @@
                   <div class="col-4">
                     <input class="form-control" type="text" id="nombre_cliente" name="nombre_cliente" value="">
                   </div>
-                  <button class="btn btn-primary col-5" type="submit" name="agregar">Agregar Producto</button>
+                  <button class="btn btn-primary col-5" type="button" name="agregar" id="agregar">Agregar Producto</button>
                 </div>
                 <!-- Tabla -->
                 <div class="row mt-5">
@@ -83,7 +79,7 @@
                           <th scope="col">Total</th>
                         </tr>
                       </thead>
-                      <tbody>
+                      <tbody  id="tbl_lista_productos">
                         <tr>
                           <th scope="row">Citrolax</th>
                           <td>algo</td>

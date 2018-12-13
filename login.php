@@ -2,6 +2,7 @@
   require "admin/config.php";
   require "funciones.php";
 
+  $incorrecto = "";
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if(isset($_POST["usuario"]) && isset($_POST["password"])){
       $conn = conexion($bd_config);
@@ -14,13 +15,15 @@
       $resultado = acceso_Usuario($usuario, $pass, $conn);
 
       if(empty($resultado)){
-        echo "Usuario o Contraseña incorrectos";
+        $incorrecto = "El usuario o la contraseña son incorrectos". "<br>";
         $conn = null;
       }else{
         $_SESSION["admin"] = $arrayName = array('NOMBRE' => $resultado[0]['NOMBRE_USUARIO'], 'ROL' => $resultado[0]['TIPO_USUARIO']);
         header('Location:'. RUTA . "admin/" . $resultado[0]['TIPO_USUARIO'] . ".php");
       }
 
+    }else{
+      $incorrecto += "Rellena todos los campos". "<br>";
     }
   };
 ?>
@@ -48,8 +51,13 @@
           <form class="d-flex flex-column" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
             <input type="text" placeholder="Usuario" name="usuario" required>
             <input type="password" placeholder="Contraseña" name="password" required>
+            <?php if ($incorrecto != ""): ?>
+              <div class="alert alert-danger" role="alert">
+                <?php ECHO $incorrecto; ?>
+              </div>
+            <?php endif; ?>
             <input class="d-flex justify-content-center" type="submit" value="Iniciar sesion">
-            <a href="index.html">&lt;&lt;   Regresar</a>
+            <a href="index.php">&lt;&lt;   Regresar</a>
           </form>
         </div>
       </div>

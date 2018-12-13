@@ -1,8 +1,7 @@
 <?php session_start();
   require "config.php";
   require "../funciones.php";
-
-  if(!$_SESSION["admin"]["ROL"] != "gerente_administrativo"){
+  if($_SESSION["admin"]["ROL"] != "gerente_administrativo"){
     header("Location: ../login.php");
   }
   $conn = conexion($bd_config);

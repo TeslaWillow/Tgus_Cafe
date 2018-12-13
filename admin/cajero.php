@@ -8,8 +8,10 @@
   }
 
   $slct_producto = get_Producto($conn);
-  if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  $fecha = get_Date($conn);
+  $nombre_usuario = $_SESSION["admin"]["NOMBRE"];
+//  if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-  }
+//  }
   require "views/view.cajero.php";
 ?>

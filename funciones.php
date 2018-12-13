@@ -102,6 +102,16 @@ function sanear_Horas($hora24, $minutos){
 
   return $hora_final;
 }
+function get_Date($conn){
+  $sent = $conn -> prepare("
+  SELECT CURDATE() AS HOY;
+  ");
+  $sent -> execute();
+  $resultado = $sent -> fetchAll();
+
+  return $resultado[0]["HOY"];
+  
+}
 //-----------------------------------------------------------
 //-----------------------------------------------------------
 //FUNCIONES PARA EL MENU DE GERENTE GENERAL
@@ -233,31 +243,6 @@ function get_Reporte_Ventas($conn, $nombre_producto = ""){
 //-----------------------------------------------------------
 //-----------------------------------------------------------
 //FUNCIONES PARA CAJERO
-function set_Factura($conn, $fecha, $sub_total, $impuesto, $total, $codigo_usuario, $codigo_producto, $nueva_factura){
-  try {
-
-      $sent_factura = $conn -> prepare("
-      INSERT INTO `tbl_facturas` (`CODIGO_FACTURA`, `FECHA`, `SUBTOTAL`, `IMPUESTO`, `TOTAL`, `CODIGO_USUARIO`)
-      VALUES (NULL, '2018-12-01', '145', '10', '165', '4');
-      ");
-      $sent_factura -> execute();
-      $codigo_factura = $sent_factura -> fetchAll();
-
-      $codigo_factura = $codigo_factura[0]["CODIGO_FACTURA"];
-
-      $sent_factura_x_producto = $conn -> prepare("
-      INSERT INTO `tbl_productos_x_facturas` (`CODIGO_PRODUCTO`, `CODIGO_FACTURA`)
-      VALUES ('$codigo_producto', '$codigo_factura');
-      "
-      );
-      $sent_factura_x_producto -> execute();
-
-
-  } catch (\Exception $e) {
-    echo "Hubo un error al ejecutar la insersion";
-  }
-
-}
 // Funciones para SELECTS
 function get_Producto($conn){
   $sent = $conn -> prepare("

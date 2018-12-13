@@ -2,7 +2,7 @@
   require "config.php";
   require "../funciones.php";
 
-  if(!$_SESSION["admin"]["ROL"] != "gerente_general"){
+  if($_SESSION["admin"]["ROL"] != "gerente_general"){
     header("Location: ../login.php");
   }
   $conn = conexion($bd_config);
