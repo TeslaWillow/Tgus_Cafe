@@ -2,18 +2,24 @@ var btn_agregar = document.getElementById("agregar"),
     tbl_productos = document.getElementById("tbl_lista_productos"),
     slct_productos = document.getElementById("slct_producto"),
     inpt_cantidad = document.getElementById("cantidad"),
-    form_facturar = document.getElementById("form_facturar");
+    form_facturar = document.getElementById("form_facturar"),
+    campo_subtotal =document.getElementById("subtotal"),
+    campo_impuesto =document.getElementById("impuesto"),
+    campo_total =document.getElementById("total");
 
 var cajero,
     fecha,
     producto,
     cantidad,
-    precio_unitario,
-    total_compra,
-    subtotal,
-    impuesto,
-    total;
+    arr_productos = [],
+    arr_cantidades = [],
+    subtotal_factura = 0,
+    impuesto_factura = 0,
+    total_factura = 0;
 
+//--------------------------------------------------------------------
+// FUNCIONES Y EVENTOS PARA ALMACENAR VALORES Y LLENAR LAS TABLAS DE LA GUI
+//--------------------------------------------------------------------
 function get_Precio(datos_productos){
   for(var i = 0; i < datos_productos.length; i++){
     if(datos_productos[i].NOMBRE == producto){
@@ -31,55 +37,65 @@ function cargarProductos(){
       console.log("Hubo un problema para traer los datos");
     }
     else{
-      // se llenan los datos que iran dentro de la tabla
-      producto = slct_productos.options[slct_productos.selectedIndex].text;
-      cantidad = inpt_cantidad.value;
-      precio = get_Precio(datos_productos);
-      total = cantidad * Number(precio);
-      //crea una tabla vacia
-      var table_row = document.createElement("tr");
-      //Ingresa los elementos a la tabla
-      table_row.innerHTML += ("<th>" + producto + "</th>");
-      table_row.innerHTML += ("<td>" + precio + " L." + "</td>");
-      table_row.innerHTML += ("<td>" + cantidad + "</td>");
-      table_row.innerHTML += ("<td>" + total + " L." + "</td>");
-      //Insertar la fila a la tabla 
-      tbl_productos.appendChild(table_row);
-
-/*    for(var i = 0; i < datos_productos.length; i++){
-        var table_row = document.createElement("tr");
-        table_row.innerHTML += ("<td>" + datos_productos[i].ID + "</td>");
-        table_row.innerHTML += ("<td>" + datos_productos[i].NOMBRE + "</td>");
-        table_row.innerHTML += ("<td>" + datos_productos[i].PRECIO + "</td>");
-        table_row.innerHTML += ("<td>" + datos_productos[i].PRECIO*5 + "</td>");
-        tbl_productos.appendChild(table_row);
-      } 
-*/
-    } 
- 
+      llenarTabla(datos_productos);
+      //Modificar los valores a pagar -----------------------------------------------------------------------------------------
+      subtotal_factura += Number(total);
+      impuesto_factura = subtotal_factura*0.15;
+      impuesto_factura = Math.round(impuesto_factura * 100) / 100;
+      total_factura = subtotal_factura + impuesto_factura;
+      campo_subtotal.innerHTML = subtotal_factura + " L.";
+      campo_impuesto.innerHTML = impuesto_factura + " L.";
+      campo_total.innerHTML = total_factura + " L.";
+      
+/*       temp =  "$productos=>[" + arr_productos + "]"; */
+    }  
   };
 
   peticion.send();
 };
+function llenarTabla(datos_productos){
+  // se llenan los datos que iran dentro de la tabla
+  producto = slct_productos.options[slct_productos.selectedIndex].text;
+  cantidad = inpt_cantidad.value;
+  precio = get_Precio(datos_productos);
+  total = cantidad * Number(precio);
+  //crea una tabla vacia
+  var table_row = document.createElement("tr");
+  //Ingresa los elementos a la tabla
+  table_row.innerHTML += ("<th>" + producto + "</th>");
+  table_row.innerHTML += ("<td>" + precio + " L." + "</td>");
+  table_row.innerHTML += ("<td>" + cantidad + "</td>");
+  table_row.innerHTML += ("<td>" + total + " L." + "</td>");
+  //Insertar la fila a la tabla  ------------------------------------------------------------------------------------------
+  tbl_productos.appendChild(table_row);
+  //Llenar el arreglo para poder ser enviado a PHP--------------
+  llenarArregoAjax(slct_productos.options[slct_productos.selectedIndex].value, cantidad);
+};
+function llenarArregoAjax(producto, cantidad){
+  arr_productos.push(producto);
+  arr_cantidades.push(cantidad);
+}
+//Evento para agregar productos a la tabla y almacenarlos en un arreglo
 btn_agregar.addEventListener('click', function(){
   cargarProductos();
 });
-
+//--------------------------------------------------------------------
+// FUNCIONES Y EVENTOS PARA INSERTAR EN LA BD LA FACTURA
+//--------------------------------------------------------------------
 function agregarFacturacion(e){
   e.preventDefault();
 
   var peticion = new XMLHttpRequest();
   peticion.open("POST", '../admin/ajax_factura.php');
 
-  cajero = form_facturar.cajero.value.trim();
-  fecha = form_facturar.cajero.value.trim();
-  cajero = form_facturar.cajero.value.trim();
-  cajero = form_facturar.cajero.value.trim();
-  precio_unitario = form_facturar.cajero.value.trim();
-  total_compra = form_facturar.cajero.value.trim();
-  subtotal = form_facturar.cajero.value.trim();
-  impuesto = form_facturar.cajero.value.trim();
-  total = form_facturar.cajero.value.trim();
+  cajero = form_facturar.id_cajero.value.trim();
+  fecha = form_facturar.fecha_emision.value.trim();
+
+  var parametros = '$codigo_usuario=' + cajero + '$fecha=' + fecha + '$sub_total=' + subtotal_factura + '$impuesto=' + impuesto_factura + '$total=' + total_factura + '$productos=['+arr_productos+']' + '$cantidades=['+arr_cantidades+']';
+  
+  peticion.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+
+  peticion.send(parametros),
 }
 form_facturar.addEventListener('submit', function(e){
   agregarFacturacion(e);

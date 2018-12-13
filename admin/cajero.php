@@ -10,8 +10,6 @@
   $slct_producto = get_Producto($conn);
   $fecha = get_Date($conn);
   $nombre_usuario = $_SESSION["admin"]["NOMBRE"];
-//  if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-//  }
+  $codigo_usuario = get_Codigo_Usuario($conn, $nombre_usuario);
   require "views/view.cajero.php";
 ?>

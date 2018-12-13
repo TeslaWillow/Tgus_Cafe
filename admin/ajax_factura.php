@@ -5,13 +5,14 @@
     error_reporting(0);
     header('Content-type: application/json; charset = utf-8');
 
+    $codigo_usuario = limpiar_Datos($_POST["codigo_usuario"]);
     $fecha = limpiar_Datos($_POST["fecha"]);
     $sub_total = limpiar_Datos($_POST["sub_total"]);
     $impuesto = limpiar_Datos($_POST["impuesto"]);
     $total = limpiar_Datos($_POST["total"]);
-    $codigo_usuario = limpiar_Datos($_POST["codigo_usuario"]);
     //Productos: Un arreglo de el codigo de cada producto que se ingreso a la factura
-    $productos = limpiar_Datos($_POST["productos"]);
+    $productos = $_POST["productos"];
+    $cantidades = $_POST["cantidades"];
 
     function validar_Datos($fecha, $sub_total, $impuesto, $total, $codigo_usuario, $productos){
         if($fecha == ""){
@@ -47,13 +48,16 @@
     
         $codigo_factura = $codigo_factura[0]["CODIGO_FACTURA"];
     
-        foreach ($productos as $producto){
-            $sent_factura_x_producto = $conn -> prepare("
-            INSERT INTO `tbl_productos_x_facturas` (`CODIGO_PRODUCTO`, `CODIGO_FACTURA`)
-            VALUES ('$producto', '$codigo_factura');
-            "
-            );
-            $sent_factura_x_producto -> execute();
+        for($i = 0; i < count($productos); i++){
+            for($j = 0; j < $cantidades[i]; j++){
+                $producto = $productos[i];
+                $sent_factura_x_producto = $conn -> prepare("
+                INSERT INTO `tbl_productos_x_facturas` (`CODIGO_PRODUCTO`, `CODIGO_FACTURA`)
+                VALUES ('$producto', '$codigo_factura');
+                "
+                );
+                $sent_factura_x_producto -> execute();
+            };
         };
        }catch(\Exception $e){
         $respuesta = ["error" => true];

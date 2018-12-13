@@ -34,7 +34,10 @@
                 <!-- Nombre cajero y forma de pago  -->
                 <div class="d-flex flex-row">
                   <label for="cajero" class="col-2 col-form-label">Cajero/a:</label>
-                  <div class="col-4">
+                  <div class="col-2">
+                    <input class="form-control" type="text" id="id_cajero" name="id_cajero" value="<?php ECHO $codigo_usuario;?>" disabled>
+                  </div>
+                  <div class="col-2">
                     <input class="form-control" type="text" id="cajero" name="cajero" value="<?php ECHO $nombre_usuario;?>" disabled>
                   </div>
                   <label for="forma_pago" class="col-2 col-form-label">Forma de pago: </label>
@@ -89,9 +92,9 @@
                 <!-- Totales -->
                 <div class="row" id="sub_totales">
                   <div class="col-md-12">
-                    <p>Sub-Total: <span>000000 L.</span></p>
-                    <p>ISV 15%: <span>000000 L.</span></p>
-                    <p>Total a pagar: <span>000000 L.</span></p>
+                    <p>Sub-Total: <span id="subtotal">0 L.</span></p>
+                    <p>ISV 15%: <span id="impuesto">0 L.</span></p>
+                    <p>Total a pagar: <span id="total">0 L.</span></p>
                     <!-- Botones -->
                     <button type="submit" name="imprimir">Imprimir</button>
                   </div>
