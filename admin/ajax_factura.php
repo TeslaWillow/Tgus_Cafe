@@ -29,6 +29,7 @@
         return true;
     };
 
+    $respuesta = ["error" => false];
     if(validar_Datos($fecha, $sub_total, $impuesto, $total, $codigo_usuario, $productos)){
        $respuesta = [];
        try{
@@ -48,9 +49,9 @@
     
         $codigo_factura = $codigo_factura[0]["CODIGO_FACTURA"];
     
-        for($i = 0; i < count($productos); i++){
-            for($j = 0; j < $cantidades[i]; j++){
-                $producto = $productos[i];
+        for($i = 0; i < count($productos) ; $i++){
+            for($j = 0; j < $cantidades[$i]; $j++){
+                $producto = $productos[$i];
                 $sent_factura_x_producto = $conn -> prepare("
                 INSERT INTO `tbl_productos_x_facturas` (`CODIGO_PRODUCTO`, `CODIGO_FACTURA`)
                 VALUES ('$producto', '$codigo_factura');

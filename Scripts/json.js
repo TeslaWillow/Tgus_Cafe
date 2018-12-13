@@ -31,6 +31,8 @@ function cargarProductos(){
   var peticion = new XMLHttpRequest();
   peticion.open('GET','../admin/ajax.php');
 
+  console.log("Esperando respuesta...");
+
   peticion.onload = function(){
     var datos_productos = JSON.parse(peticion.responseText);
     if(datos_productos.error){
@@ -46,9 +48,13 @@ function cargarProductos(){
       campo_subtotal.innerHTML = subtotal_factura + " L.";
       campo_impuesto.innerHTML = impuesto_factura + " L.";
       campo_total.innerHTML = total_factura + " L.";
-      
-/*       temp =  "$productos=>[" + arr_productos + "]"; */
     }  
+  };
+
+  peticion.onreadystatechange = function(){
+    if(peticion.readyState == 4 && peticion.status == 200){
+      console.log("Respuesta recibida");
+    }
   };
 
   peticion.send();
@@ -95,9 +101,27 @@ function agregarFacturacion(e){
   
   peticion.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
 
-  peticion.send(parametros),
+  peticion.send(parametros);
 }
 form_facturar.addEventListener('submit', function(e){
   agregarFacturacion(e);
+
+  var recepcion = new XMLHttpRequest();
+  recepcion.open('GET','../admin/ajax_factura.php');
+
+  console.log("Esperando respuesta...");
+
+  recepcion.onload = function(){
+    var respuesta = JSON.parse(recepcion.responseText);
+    if(respuesta.error){
+      console.log(respuesta.error);
+    }
+  };
+
+  recepcion.onreadystatechange = function(){
+    if(recepcion.readyState == 4 && recepcion.status == 200){
+      console.log("Respuesta recibida");
+    }
+  };
 });
 
