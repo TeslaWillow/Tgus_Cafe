@@ -113,8 +113,8 @@ function get_Date($conn){
   
 }
 //-----------------------------------------------------------
-//-----------------------------------------------------------
 //FUNCIONES PARA EL MENU DE GERENTE GENERAL
+//-----------------------------------------------------------
 function get_Eventos($conn, $nombre_evento=""){
   $sent = $conn -> prepare("
   SELECT A.NOMBRE_EVENTO, A.FECHA_EVENTO, A.HORA_INICIO, A.HORA_FIN, C.NOMBRE
@@ -167,8 +167,8 @@ function set_Evento(
   }
 }
 //-----------------------------------------------------------
-//-----------------------------------------------------------
 // FUNCIONES PARA EL MENU DE GERENTE ADMINISTRATIVO
+//-----------------------------------------------------------
 function get_Empleados($conn, $nombre_empleado = ""){
   $sent = $conn -> prepare("
   SELECT CONCAT(C.NOMBRE, ' ', C.APELLIDO) AS NOMBRE_COMPLETO, A.IDENTIDAD, B.PUESTO_EMPLEADO, A.FECHA_INGRESO, A.SUELDO
@@ -202,6 +202,30 @@ function get_Puesto_Empleado($conn){
 
   return $resultado;
 }
+// get_Empleado: Devuelve el codigo de los empleados y sys nombres
+function get_Empleado($conn){
+  $sent = $conn -> prepare("
+  SELECT A.CODIGO_EMPLEADO, B.NOMBRE 
+  FROM tbl_empleados A, tbl_personas B 
+  WHERE A.CODIGO_EMPLEADO = B.CODIGO_PERSONA 
+  AND A.CODIGO_EMPLEADO NOT IN ( SELECT C.CODIGO_USUARIO FROM tbl_usuarios C ); 
+  ");
+  $sent -> execute();
+  $resultado = $sent -> fetchAll();
+
+  return $resultado;
+}
+// get_Tipo_Usuario: Devuelve el codigo y el nombre del tipo de usuario
+function get_Tipo_Usuario($conn){
+  $sent = $conn -> prepare("
+  SELECT A.CODIGO_TIPO_USUARIO, A.TIPO_USUARIO
+  FROM tbl_tipo_usuario A; 
+  ");
+  $sent -> execute();
+  $resultado = $sent -> fetchAll();
+
+  return $resultado;
+}
 // Funcion set EMPLEADOS
 function set_empleado($conn, $nombre_empleado, $apellido_empleado, $codigo_direccion, $ID_empleado ,$codigo_puesto, $sueldo, $fecha_ingreso){
   try {
@@ -220,12 +244,22 @@ function set_empleado($conn, $nombre_empleado, $apellido_empleado, $codigo_direc
   } catch (\Exception $e) {
     echo "Ha ocurrido un error durante la ejecucion de la insersion de datos";
   }
-
-
+}
+// Funcion set Usuario
+function set_Usuario($conn, $nombre_usuario, $pass, $codigo_empleado, $codigo_tipo_empleado){
+  try {
+    $sent_persona = $conn -> prepare("
+    INSERT INTO `tbl_usuarios` (`CODIGO_USUARIO`, `NOMBRE_USUARIO`, `CONTRASENA`, `CODIGO_TIPO_USUARIO`) 
+    VALUES ('$codigo_empleado', '$nombre_usuario', '$pass', '$codigo_tipo_empleado');
+    ");
+    $sent_persona -> execute();
+  } catch (\Exception $e) {
+    echo "Ha ocurrido un error durante la ejecucion de la insersion de datos";
+  }
 }
 //-----------------------------------------------------------
-//-----------------------------------------------------------
 //FUNCIONES PARA EL MENU DE CONTADOR
+//-----------------------------------------------------------
 function get_Reporte_Ventas($conn, $nombre_producto = ""){
   $sent = $conn -> prepare("
   SELECT A.NOMBRE_PRODUCTO, COUNT(B.CODIGO_PRODUCTO) AS CANTIDAD, A.PRECIO_PRODUCTO, SUM(A.PRECIO_PRODUCTO) AS TOTAL_VENTAS
@@ -241,8 +275,8 @@ function get_Reporte_Ventas($conn, $nombre_producto = ""){
   return $resultado;
 }
 //-----------------------------------------------------------
-//-----------------------------------------------------------
 //FUNCIONES PARA CAJERO
+//-----------------------------------------------------------
 // Funciones para SELECTS
 function get_Producto($conn){
   $sent = $conn -> prepare("

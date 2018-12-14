@@ -17,8 +17,8 @@ body
   background: #e8e8e8
 
 img
-  vertical-align: top
-  width: 100%
+  vertical-align: top !important
+  width: 100% !important
 
 %form_items
   input[type=text],input[type=date]
@@ -45,6 +45,9 @@ img
   color: #fff
   margin-left: 30px
 
+.limit_table
+  height: 450px
+  overflow: scroll
 
 // Documento
 header
@@ -124,11 +127,15 @@ main
       form
          @extend %form_items
     // GERENCIA ADMINISTRATIVA
+    #div_GA_validar_reportes
+      form
+         @extend %form_items
     #div_GA_generar_planillas
       display: none
       form
          @extend %form_items
-    #div_GA_validar_reportes
+    #div_GA_agregar_usuario
+      display: none
       form
          @extend %form_items
     // GERENCIA GENERAL

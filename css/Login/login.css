@@ -30,7 +30,8 @@ body {
 }
 
 img {
-  width: 100%;
+  vertical-align: top !important;
+  width: 45% !important;
 }
 
 .container .row {

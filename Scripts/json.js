@@ -1,3 +1,4 @@
+//Declaracion de variables del DOM
 var btn_agregar = document.getElementById("agregar"),
     tbl_productos = document.getElementById("tbl_lista_productos"),
     slct_productos = document.getElementById("slct_producto"),
@@ -6,7 +7,7 @@ var btn_agregar = document.getElementById("agregar"),
     campo_subtotal =document.getElementById("subtotal"),
     campo_impuesto =document.getElementById("impuesto"),
     campo_total =document.getElementById("total");
-
+//Declaracion de variables 
 var cajero,
     fecha,
     producto,
@@ -20,6 +21,7 @@ var cajero,
 //--------------------------------------------------------------------
 // FUNCIONES Y EVENTOS PARA ALMACENAR VALORES Y LLENAR LAS TABLAS DE LA GUI
 //--------------------------------------------------------------------
+//Devuelve el precio del producto 
 function get_Precio(datos_productos){
   for(var i = 0; i < datos_productos.length; i++){
     if(datos_productos[i].NOMBRE == producto){
@@ -27,6 +29,7 @@ function get_Precio(datos_productos){
     }
   }
 }
+//Void que se encarga de cargar los datos a la tabla y almacenarlos para podesterioremente ser enviados a PHP
 function cargarProductos(){
   var peticion = new XMLHttpRequest();
   peticion.open('GET','../admin/ajax.php');
@@ -77,6 +80,7 @@ function llenarTabla(datos_productos){
   //Llenar el arreglo para poder ser enviado a PHP--------------
   llenarArregoAjax(slct_productos.options[slct_productos.selectedIndex].value, cantidad);
 };
+//Se almacenan los datos en un arreglo
 function llenarArregoAjax(producto, cantidad){
   arr_productos.push(producto);
   arr_cantidades.push(cantidad);
@@ -96,16 +100,17 @@ function agregarFacturacion(e){
 
   cajero = form_facturar.id_cajero.value.trim();
   fecha = form_facturar.fecha_emision.value.trim();
-
   var parametros = '$codigo_usuario=' + cajero + '$fecha=' + fecha + '$sub_total=' + subtotal_factura + '$impuesto=' + impuesto_factura + '$total=' + total_factura + '$productos=['+arr_productos+']' + '$cantidades=['+arr_cantidades+']';
-  
   peticion.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+  console.log(parametros);
 
   peticion.send(parametros);
 }
+//Evento del BTN de imprimir y terminar
 form_facturar.addEventListener('submit', function(e){
   agregarFacturacion(e);
 
+/*   
   var recepcion = new XMLHttpRequest();
   recepcion.open('GET','../admin/ajax_factura.php');
 
@@ -113,8 +118,8 @@ form_facturar.addEventListener('submit', function(e){
 
   recepcion.onload = function(){
     var respuesta = JSON.parse(recepcion.responseText);
-    if(respuesta.error){
-      console.log(respuesta.error);
+    if(respuesta[0].ID){
+      console.log(respuesta[0].ID);
     }
   };
 
@@ -122,6 +127,7 @@ form_facturar.addEventListener('submit', function(e){
     if(recepcion.readyState == 4 && recepcion.status == 200){
       console.log("Respuesta recibida");
     }
-  };
+  }; 
+ */
 });
 

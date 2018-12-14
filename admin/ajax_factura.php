@@ -4,33 +4,29 @@
 
     error_reporting(0);
     header('Content-type: application/json; charset = utf-8');
-
-    $codigo_usuario = limpiar_Datos($_POST["codigo_usuario"]);
-    $fecha = limpiar_Datos($_POST["fecha"]);
-    $sub_total = limpiar_Datos($_POST["sub_total"]);
-    $impuesto = limpiar_Datos($_POST["impuesto"]);
-    $total = limpiar_Datos($_POST["total"]);
+    
+    $codigo_usuario = $_POST['codigo_usuario'];
+    $fecha = $_POST['fecha'];
+    $sub_total = $_POST['sub_total'];
+    $impuesto = $_POST['impuesto'];
+    $total = $_POST['total'];
     //Productos: Un arreglo de el codigo de cada producto que se ingreso a la factura
-    $productos = $_POST["productos"];
-    $cantidades = $_POST["cantidades"];
-
+    $productos = $_POST['productos'];
+    $cantidades = $_POST['cantidades'];
+    
     function validar_Datos($fecha, $sub_total, $impuesto, $total, $codigo_usuario, $productos){
-        if($fecha == ""){
-            return false;
-        }else if($sub_total <= 0){
+        if($sub_total <= 0){
             return false;
         }else if($impuesto <= 0){
             return false;
         }else if($total <= 0){
             return false;
-        }else if(isset($productos)){
-            return false;
         }
         return true;
     };
-
-    $respuesta = ["error" => false];
-    if(validar_Datos($fecha, $sub_total, $impuesto, $total, $codigo_usuario, $productos)){
+    
+    $respuesta = [];
+    if(true){
        $respuesta = [];
        try{
         $conn = conexion($bd_config);
@@ -65,6 +61,6 @@
        }
     }else{
         $respuesta = ["error" => true];
-    };
+    }; 
     echo json_encode($respuesta);
 ?>

@@ -4,9 +4,11 @@
         <div class="row mt-5">
           <!-- barra de navegacion  -->
           <div class="col-md-3" id="blue">
+            <!-- BTN Vizualizar Eventos -->
             <button type="button" name="informacion_empleados" class="btn_active" id="btn_vizualizar_eventos" onclick="toggle_Vizualizar_Informacion()">
               Vizualizar Eventos
             </button>
+            <!-- BTN Agendar Eventos -->
             <button type="button" name="agendar_eventos" class="" id="btn_agendar_eventos" onclick="toggle_Agendar_Eventos()">
               Agendar Eventos
             </button>
@@ -121,7 +123,7 @@
               </div>
               <!-- Botones -->
               <div class="botones d-flex justify-content-center mt-5">
-                <button type="submit" class="btn btn-danger btn-lg btn-block" name="btn_insertar_evento" id="btn_insertar_evento" value="1">Agregar Empleado</button>
+                <button type="submit" class="btn btn-danger btn-lg btn-block" name="btn_insertar_evento" id="btn_insertar_evento" value="1">Agregar Evento</button>
               </div>
               </form>
             </div>

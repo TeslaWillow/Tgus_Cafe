@@ -12,6 +12,8 @@
 
       $usuario = limpiar_Datos($_POST["usuario"]);
       $pass = limpiar_Datos($_POST["password"]);
+      //LINEA A DESCOMENTAR CUANDO SE COMPRUEBE QUE ESTA HASHEADO
+      /* $pass = hash("sha512", $pass); */ 
       $resultado = acceso_Usuario($usuario, $pass, $conn);
 
       if(empty($resultado)){

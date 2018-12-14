@@ -72,7 +72,7 @@
                 </div>
                 <!-- Tabla -->
                 <div class="row mt-5">
-                  <div class="col-md-12">
+                  <div class="col-md-12 limit_table">
                     <table class="table table-striped">
                     <!-- Header de la tabla -->
                       <thead>

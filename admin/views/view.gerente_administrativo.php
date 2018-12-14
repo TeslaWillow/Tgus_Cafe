@@ -10,6 +10,10 @@
             <button type="button" name="registro" class="" id="btn_generar_planillas" onclick="toggle_Generar_Planillas()">
               Crear empleado
             </button>
+            <!-- BTN agregar usuario -->
+            <button type="button" name="agendar_eventos" class="" id="btn_agregar_usuario" onclick="toggle_Agregar_Usuario()">
+              Agregar Usuarios
+            </button>
           </div>
           <!-- panel -->
           <div class="col-md-9" id="white">
@@ -120,6 +124,69 @@
                 <div class="botones d-flex justify-content-end">
                   <button type="button" name="limpiar" id="limpiar" class="naranja"  onclick="limpiar_Formulario()">Limpiar</button>
                   <button type="submit" name="btn_crear_empleado" id="btn_crear_empleado" class="rojo">Crear empleado</button>
+                </div>
+              </form>
+            </div>
+            <!-- PANEL AGREGAR USUARIO -->
+            <div class="mt-5" id="div_GA_agregar_usuario">
+              <!-- MENSAJE DE ERROR -->
+              <div class="d-flex flex-row mt-5">
+                <?php if($err != ""): ?>
+                  <div class="alert alert-danger col-md-12" role="alert">
+                    <?php echo $err;?>
+                  </div>
+                <?php endif; ?>
+              </div>
+              <!-- Filtro  -->
+              <form class="" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post" id="agregar_usuario">
+                <!-- FORMULARIO -->
+                <div class="d-flex flex-column">
+                  <!-- Nombre usuario -->
+                  <div class="d-flex flex-row">
+                    <label for="nombre_usuario" class="col-2 col-form-label">Nombre usuario:</label>
+                    <div class="col-10">
+                      <input class="form-control" type="text" id="nombre_usuario" name="nombre_usuario" maxlength="70" required>
+                    </div>
+                  </div>
+                  <!-- Contraseña -->
+                  <div class="d-flex flex-row">
+                    <label for="pass" class="col-2 col-form-label">Contraseña:</label>
+                    <div class="col-10">
+                      <input class="form-control" type="password" id="pass" name="pass" maxlength="8" required>
+                    </div>
+                  </div>
+                  <!-- Repetir Contraseña -->
+                  <div class="d-flex flex-row mt-3">
+                    <label for="repeat_password" class="col-2 col-form-label">Repetir Contraseña:</label>
+                    <div class="col-10">
+                      <input class="form-control" type="password" id="repeat_password" name="repeat_password" maxlength="8" required>
+                    </div>
+                  </div>
+                  <!-- Empleado -->
+                  <div class="d-flex flex-row mt-3">
+                    <label for="slct_empleado" class="col-2 col-form-label">Empleado: </label>
+                    <select name="slct_empleado" id="slct_empleado" class="custom-select col-10 mt-2" required>
+                      <option value="" disabled selected>Seleccione el empleado: </option>
+                      <?php foreach ($slct_empleado as $row): ?>
+                        <option value="<?php echo $row["CODIGO_EMPLEADO"] ?>"><?php echo $row["NOMBRE"]; ?></option>
+                      <?php endforeach; ?>
+                    </select>
+                  </div>
+                  <!-- Tipo Usuario -->
+                  <div class="d-flex flex-row mt-3">
+                    <label for="slct_tipo_usuario" class="col-2 col-form-label">Puesto empleado: </label>
+                    <select name="slct_tipo_usuario" id="slct_tipo_usuario" class="custom-select col-10 mt-2" required>
+                      <option value="" disabled selected>¿Qué puesto desempeñara el empleado?</option>
+                      <?php foreach ($slct_tipo_usuario as $row): ?>
+                        <option value="<?php echo $row["CODIGO_TIPO_USUARIO"] ?>"><?php echo $row["TIPO_USUARIO"]; ?></option>
+                      <?php endforeach; ?>
+                    </select>
+                  </div>
+                </div>
+              <!-- Botones -->
+                <div class="botones d-flex justify-content-end">
+                  <button type="button" name="limpiar" id="limpiar" class="naranja"  onclick="limpiar_Formulario_Usuario()">Limpiar</button>
+                  <button type="submit" name="btn_crear_empleado" id="btn_crear_empleado" class="rojo">Crear Usuario</button>
                 </div>
               </form>
             </div>
