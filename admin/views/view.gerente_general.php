@@ -67,7 +67,7 @@
             <!-- AGREGAR EVENTOS -->
             <div class="mt-5" id="div_GG_agendar_eventos">
               <!-- Filtro  -->
-              <form class="" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
+              <form class="" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post" id="form_agregar_evento">
               <div class="d-flex flex-column">
                 <!-- Nombre Evento -->
                 <div class="d-flex flex-row">
@@ -122,8 +122,9 @@
                 </div>
               </div>
               <!-- Botones -->
-              <div class="botones d-flex justify-content-center mt-5">
-                <button type="submit" class="btn btn-danger btn-lg btn-block" name="btn_insertar_evento" id="btn_insertar_evento" value="1">Agregar Evento</button>
+              <div class="botones d-flex justify-content-center mt-5 flex-row">
+                <button type="submit" class="btn btn-danger btn-lg btn-block col-10" name="btn_insertar_evento" id="btn_insertar_evento" value="1">Agregar Evento</button>
+                <button type="button" class="btn btn-warning col-2 ml-2" onclick="limpiar_Formulario_Agregar_Evento()">Limpiar</button>
               </div>
               </form>
             </div>

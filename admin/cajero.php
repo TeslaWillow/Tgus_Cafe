@@ -1,7 +1,7 @@
 <?php session_start();
   require "config.php";
   require "../funciones.php";
-
+  //VERIFICA SI EL USUARIO ES CAJERO
   if($_SESSION["admin"]["ROL"] != "cajero"){
     header("Location: ../login.php");
   }

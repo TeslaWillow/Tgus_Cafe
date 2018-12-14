@@ -11,6 +11,7 @@
         'error' => true
     ];
   }else{
+    //Consulta a la bd que retorna los datos de productos para tener los precio
     $sent = $conn -> prepare("
     SELECT * 
     FROM tbl_productos;

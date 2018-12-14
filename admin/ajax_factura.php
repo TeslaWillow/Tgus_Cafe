@@ -13,8 +13,8 @@
     //Productos: Un arreglo de el codigo de cada producto que se ingreso a la factura
     $productos = $_POST['productos'];
     $cantidades = $_POST['cantidades'];
-    
-    /* function validar_Datos($fecha, $sub_total, $impuesto, $total, $codigo_usuario, $productos){
+    // Validacion para el insertar datos en la tabla
+    function validar_Datos($fecha, $sub_total, $impuesto, $total, $codigo_usuario, $productos){
         if($sub_total <= 0){
             return false;
         }else if($impuesto <= 0){
@@ -23,19 +23,20 @@
             return false;
         }
         return true;
-    }; */
+    };
     
     $respuesta = [];
     if(true){
        $respuesta = [];
        try{
+        //INSERSION SQL A LA TABLA FACTURA
         $conn = conexion($bd_config);
         $sent_factura = $conn -> prepare("
         INSERT INTO `tbl_facturas` (`CODIGO_FACTURA`, `FECHA`, `SUBTOTAL`, `IMPUESTO`, `TOTAL`, `CODIGO_USUARIO`)
         VALUES (NULL, '$fecha', '$sub_total', '$impuesto', '$total', '$codigo_usuario');
         ");
         $sent_factura -> execute();
-
+        //CONSULTA PARA OBTENER LA ULTIMA FACTURA INGRESADA
         $setn_codigo = $conn -> prepare("
         SELECT MAX(id) 
         FROM tbl_facturas;"
@@ -44,7 +45,7 @@
         $codigo_factura = $setn_codigo -> fetchAll();
     
         $codigo_factura = $codigo_factura[0]["CODIGO_FACTURA"];
-    
+        //CICLO PARA INSERTAR DATOS EN LA TABLA TBL_PRODUCTOS_X_FACTURA
         for($i = 0; $i < count($productos) ; $i++){
             for($j = 0; $j < $cantidades[$i]; $j++){
                 $producto = $productos[$i];
@@ -57,10 +58,11 @@
             };
         };
        }catch(\Exception $e){
+        //Variable de retorno false
         $respuesta = ["error" => true];
        }
     }else{
-        $respuesta = ["error" => true];
+        $respuesta = ["error" => false];
     }; 
     echo json_encode($respuesta);
 ?>

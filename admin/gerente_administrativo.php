@@ -1,6 +1,7 @@
 <?php session_start();
   require "config.php";
   require "../funciones.php";
+  //VERIFICA SI EL USUARIO ES GERENTE ADMINISTRATIVO
   if($_SESSION["admin"]["ROL"] != "gerente_administrativo"){
     header("Location: ../login.php");
   }

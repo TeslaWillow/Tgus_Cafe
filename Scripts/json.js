@@ -35,7 +35,7 @@ function cargarProductos(){
   peticion.open('GET','../admin/ajax.php');
 
   console.log("Esperando respuesta...");
-
+  //LA CARGAR LOS DATOS SINO HUBO ERROR INSERTARA EN LA TABLA
   peticion.onload = function(){
     var datos_productos = JSON.parse(peticion.responseText);
     if(datos_productos.error){
@@ -100,7 +100,7 @@ function agregarFacturacion(e){
 
   cajero = form_facturar.id_cajero.value.trim();
   fecha = form_facturar.fecha_emision.value.trim();
-  var parametros = 'codigo_usuario=' + cajero + '$fecha=' + fecha + '$sub_total=' + subtotal_factura + '$impuesto=' + impuesto_factura + '$total=' + total_factura + '$productos=['+arr_productos+']' + '$cantidades=['+arr_cantidades+']';
+  var parametros = 'codigo_usuario=' + cajero + '$fecha=' + fecha + '$sub_total=' + subtotal_factura + '$impuesto=' + impuesto_factura + '$total=' + total_factura + '$productos='+ arr_productos + '$cantidades='+arr_cantidades;
   peticion.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
   console.log(parametros);
 
@@ -109,25 +109,5 @@ function agregarFacturacion(e){
 //Evento del BTN de imprimir y terminar
 form_facturar.addEventListener('submit', function(e){
   agregarFacturacion(e);
-
-/*   
-  var recepcion = new XMLHttpRequest();
-  recepcion.open('GET','../admin/ajax_factura.php');
-
-  console.log("Esperando respuesta...");
-
-  recepcion.onload = function(){
-    var respuesta = JSON.parse(recepcion.responseText);
-    if(respuesta[0].ID){
-      console.log(respuesta[0].ID);
-    }
-  };
-
-  recepcion.onreadystatechange = function(){
-    if(recepcion.readyState == 4 && recepcion.status == 200){
-      console.log("Respuesta recibida");
-    }
-  }; 
- */
 });
 

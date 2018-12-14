@@ -5,7 +5,7 @@ var agr_user = document.getElementById("div_GA_agregar_usuario");
 var btn_gen_plan = document.getElementById("btn_generar_planillas");
 var btn_val_rep = document.getElementById("btn_validar_reportes");
 var btn_agr_user = document.getElementById("btn_agregar_usuario");
-
+//TOGGLE: VISUALIZA LA OPCION QUE SE LE DE CLICK OCULTANDO LAS DEMAS
 function toggle_Generar_Planillas() {
     btn_gen_plan.classList.add("btn_active");
     btn_val_rep.classList.remove("btn_active");
@@ -36,10 +36,10 @@ function toggle_Agregar_Usuario() {
     agr_user.style.display = "block";
   }
 
+//FUNCIONES QUE VACIAN LOS FORMULARIOS 
 function limpiar_Formulario(){
     document.getElementById("agregar_empleado").reset();
 }
-
 function limpiar_Formulario_Usuario(){
     document.getElementById("agregar_usuario").reset();
 }

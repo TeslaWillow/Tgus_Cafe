@@ -1,7 +1,7 @@
 <?php session_start();
   require "config.php";
   require "../funciones.php";
-
+  //VERIFICA SI EL USUARIO ES CONTADOR
   if($_SESSION["admin"]["ROL"] != "contador"){
     header("Location: ../login.php");
   }

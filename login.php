@@ -3,9 +3,12 @@
   require "funciones.php";
 
   $incorrecto = "";
+  //Al dar click en SUBMIT
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    //Verificaicon si estan seteadas ambos campos
     if(isset($_POST["usuario"]) && isset($_POST["password"])){
       $conn = conexion($bd_config);
+      //Sino hay conexion redirigira a paginad error.
       if(!$conn){
         header("Location: 404.php");
       }
@@ -17,15 +20,18 @@
       $resultado = acceso_Usuario($usuario, $pass, $conn);
 
       if(empty($resultado)){
+        //Mensaje de error y matar la conexion
         $incorrecto = "El usuario o la contraseña son incorrectos". "<br>";
         $conn = null;
       }else{
+        //IMPORTANTE: El rol que desempeña el usuario es necesario para poder redirigirlo a su menu
+        //SE CARGA EN LA SESSION LOS DATOS DEL USUARIO YA VALIDADO
         $_SESSION["admin"] = $arrayName = array('NOMBRE' => $resultado[0]['NOMBRE_USUARIO'], 'ROL' => $resultado[0]['TIPO_USUARIO']);
         header('Location:'. RUTA . "admin/" . $resultado[0]['TIPO_USUARIO'] . ".php");
       }
 
     }else{
-      $incorrecto += "Rellena todos los campos". "<br>";
+      $incorrecto .= "Rellena todos los campos". "<br>";
     }
   };
 ?>
