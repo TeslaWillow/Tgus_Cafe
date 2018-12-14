@@ -14,7 +14,7 @@
     $productos = $_POST['productos'];
     $cantidades = $_POST['cantidades'];
     
-    function validar_Datos($fecha, $sub_total, $impuesto, $total, $codigo_usuario, $productos){
+    /* function validar_Datos($fecha, $sub_total, $impuesto, $total, $codigo_usuario, $productos){
         if($sub_total <= 0){
             return false;
         }else if($impuesto <= 0){
@@ -23,7 +23,7 @@
             return false;
         }
         return true;
-    };
+    }; */
     
     $respuesta = [];
     if(true){
@@ -45,8 +45,8 @@
     
         $codigo_factura = $codigo_factura[0]["CODIGO_FACTURA"];
     
-        for($i = 0; i < count($productos) ; $i++){
-            for($j = 0; j < $cantidades[$i]; $j++){
+        for($i = 0; $i < count($productos) ; $i++){
+            for($j = 0; $j < $cantidades[$i]; $j++){
                 $producto = $productos[$i];
                 $sent_factura_x_producto = $conn -> prepare("
                 INSERT INTO `tbl_productos_x_facturas` (`CODIGO_PRODUCTO`, `CODIGO_FACTURA`)
