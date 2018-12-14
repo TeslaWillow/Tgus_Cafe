@@ -43,7 +43,7 @@
     <div class="container">
       <div class="row">
         <div class="col-sm-12 col-md-7 d-flex justify-content-center" id="left_background">
-          <img src="Img/Tgus ico render.png" alt="Login_background">
+          <img class="img-fluid" src="Img/Tgus ico render.png" alt="Login_background">
         </div>
         <div class="col-sm-12 col-md-5" id="right_background">
           <h3 class="d-flex justify-content-center">Login</h3>

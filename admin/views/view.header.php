@@ -19,7 +19,7 @@
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
               <a class="nav-item nav-link active" href="<?php ECHO RUTA; ?>">Inicio</a>
-              <a class="nav-item nav-link" href="#">Ayuda</a>
+              <a class="nav-item nav-link" href="<?php echo RUTA; ?>admin/Manual de Usuario - Tegus Cafe & Mas.pdf">Ayuda</a>
               <a class="nav-item nav-link" href="cerrar_session.php">Cerrar</a>
             </div>
           </div>
