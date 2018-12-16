@@ -73,9 +73,12 @@
       isset($_POST["nombre_producto"]) &&
       isset($_POST["lempiras"]) &&
       isset($_POST["centavos"]) &&
-      isset($_POST["slct_tipo_producto"]) &&
+      isset($_POST["slct_tipo_producto"]) 
      ){
-      
+      $nombre_producto = limpiar_Datos($_POST["nombre_producto"]);
+      $precio = $_POST["lempiras"] + ($_POST["centavos"]/100);
+      $codigo_tipo_producto = $_POST["slct_tipo_producto"];
+      set_Producto($conn, $nombre_producto, $precio, $codigo_tipo_producto);
      }
   };
 

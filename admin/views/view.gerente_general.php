@@ -218,7 +218,7 @@
               <!-- Botones -->
                 <div class="botones d-flex justify-content-end mt-3">
                   <button type="button" name="limpiar" id="limpiar" class="naranja"  onclick="limpiar_Formulario_Agregar_Cliente()">Limpiar</button>
-                  <button type="submit" name="btn_crear_producto" id="btn_crear_producto" class="rojo" value="1">Crear cliente</button>
+                  <button type="submit" name="btn_crear_producto" id="btn_crear_producto" class="rojo" value="1">Agregar producto</button>
                 </div>
               </form>
             </div>

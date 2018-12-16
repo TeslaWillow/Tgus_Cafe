@@ -183,7 +183,7 @@ function set_Cliente($conn, $nombre_producto, $precio, $codigo_tipo_producto){
     echo "Hubo un problema durante la insersion de datos";
   }
 }
-function set_Producto(){
+function set_Producto($conn, $nombre_producto, $precio, $codigo_tipo_producto){
   try {
     $sent_persona = $conn -> prepare("
     INSERT INTO `tbl_productos` (`CODIGO_PRODUCTO`, `NOMBRE_PRODUCTO`, `PRECIO_PRODUCTO`, `CODIGO_TIPO_PRODUCTO`) 
