@@ -64,6 +64,10 @@ function get_Codigo_Persona($conn, $nombre, $apellido){
 //HACE UN ARREGLO DEL FORMATO DE 24 HORAS A 12 HORAS
 function sanear_Horas($hora24, $minutos){
   $hora24 = (int)$hora24;
+  $minutos = (int)$minutos;
+  if($minutos < 10){
+    $minutos = "0" . $minutos;
+  }
   if($hora24 > 12){
     $hora24 = $hora24 - 12;
     $hora24 = (string)$hora24;
@@ -123,6 +127,26 @@ function get_Tipo_Evento($conn){
 
   return $resultado;
 }
+function get_Tipo_Cliente($conn){
+  $sent = $conn -> prepare("
+  SELECT A.CODIGO_TIPO_CLIENTE, A.TIPO_CLIENTE
+  FROM tbl_tipo_cliente A;
+  ");
+  $sent -> execute();
+  $resultado = $sent -> fetchAll();
+
+  return $resultado;
+}
+function get_Tipo_Producto($conn){
+  $sent = $conn -> prepare("
+  SELECT A.CODIGO_TIPO_PRODUCTO, A.TIPO_PRODUCTO
+  FROM tbl_tipo_producto A;
+  ");
+  $sent -> execute();
+  $resultado = $sent -> fetchAll();
+
+  return $resultado;
+}
 // Funcion para insertar en la BD
 function set_Evento(
   $conn, $nombre_evento, $fecha_evento,
@@ -135,6 +159,38 @@ function set_Evento(
     VALUES (NULL, '$nombre_evento', '$fecha_evento', '$hora_inicio', '$hora_fin', '$ID_user', '$ID_cliente', '$ID_tipo_evento');
     ");
     $sent -> execute();
+  } catch (\Exception $e) {
+    echo "Hubo un problema durante la insersion de datos";
+  }
+}
+function set_Cliente($conn, $nombre_producto, $precio, $codigo_tipo_producto){
+  try {
+    $sent_persona = $conn -> prepare("
+    INSERT INTO `tbl_personas` (`CODIGO_PERSONA`, `NOMBRE`, `APELLIDO`, `CODIGO_DIRECCION`)
+    VALUES (NULL, '$nombre_cliente', '$apellido_cliente', '$codigo_direccion');
+    ");
+    $sent_persona -> execute();
+
+    $codigo_persona = get_Codigo_Persona($conn, $nombre_cliente, $apellido_cliente);
+
+    $sent_cliente = $conn -> prepare("
+    INSERT INTO `tbl_clientes` (`CODIGO_CLIENTE`, `CODIGO_TIPO_CLIENTE`) 
+    VALUES ('$codigo_persona', '$codigo_tipo_cliente');
+    ");
+    $sent_cliente -> execute();
+    
+  } catch (\Exception $e) {
+    echo "Hubo un problema durante la insersion de datos";
+  }
+}
+function set_Producto(){
+  try {
+    $sent_persona = $conn -> prepare("
+    INSERT INTO `tbl_productos` (`CODIGO_PRODUCTO`, `NOMBRE_PRODUCTO`, `PRECIO_PRODUCTO`, `CODIGO_TIPO_PRODUCTO`) 
+    VALUES (NULL, '$nombre_producto', '$precio', '$codigo_tipo_producto');
+    ");
+    $sent_persona -> execute();
+        
   } catch (\Exception $e) {
     echo "Hubo un problema durante la insersion de datos";
   }
@@ -209,6 +265,7 @@ function set_empleado($conn, $nombre_empleado, $apellido_empleado, $codigo_direc
     $sent_persona -> execute();
 
     $codigo_persona = get_Codigo_Persona($conn, $nombre_empleado, $apellido_empleado);
+
     $sent_empleado = $conn -> prepare("
       INSERT INTO `tbl_empleados` (`CODIGO_EMPLEADO`, `CODIGO_PUESTO_EMPLEADO`, `IDENTIDAD`, `SUELDO`, `FECHA_INGRESO`)
       VALUES ('$codigo_persona', '$codigo_puesto', '$ID_empleado', '$sueldo', '$fecha_ingreso')

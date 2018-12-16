@@ -6,7 +6,7 @@
     header("Location: ../login.php");
   }
   $conn = conexion($bd_config);
-  $user = $_SESSION["admin"];
+  $user = $_SESSION["admin"]["NOMBRE"];
   if(!$conn){
     header("Location: ../404.php");
   }
@@ -15,6 +15,11 @@
   // VARIABLES PARA: SELECTS
   $resultado_slct_tipo_evento = get_Tipo_Evento($conn);
   $resultado_slct_reservado_por = get_Reservado_Por($conn);
+  $slct_direccion = get_Direccion($conn);
+  $slct_Tipo_Cliente = get_Tipo_Cliente($conn);
+  $slct_Tipo_Producto = get_Tipo_Producto($conn);
+  //FECHA
+  $hoy = get_Date($conn);
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // BTN_BUSCAR_EVENTO
     if(isset($_POST["nombre_evento"])){
@@ -46,6 +51,31 @@
          $hora_inicio, $hora_fin, $ID_user,
          $ID_cliente, $ID_tipo_evento
        );
+     }
+     // Doble comprobacion si todos los datos de cliente son recibidos
+     if(
+       isset($_POST["btn_crear_cliente"]) &&
+       isset($_POST["nombre_cliente"]) &&
+       isset($_POST["apellido_cliente"]) &&
+       isset($_POST["slct_direccion_cliente"]) &&
+       isset($_POST["slct_tipo_cliente"]) 
+     ){
+      $nombre_cliente = limpiar_Datos($_POST["nombre_cliente"]);
+      $apellido_cliente = limpiar_Datos($_POST["apellido_cliente"]);
+      $codigo_direccion = limpiar_Datos($_POST["slct_direccion_cliente"]);
+      $codigo_tipo_cliente = limpiar_Datos($_POST["slct_tipo_cliente"]);
+      set_Cliente($conn, $nombre_cliente, $apellido_cliente, $codigo_direccion, $codigo_tipo_cliente);
+      $resultado_slct_reservado_por = get_Reservado_Por($conn);
+     }
+     // Doble comprobacion si todos los datos del producto son recibidos
+     if(
+      isset($_POST["btn_crear_producto"]) &&
+      isset($_POST["nombre_producto"]) &&
+      isset($_POST["lempiras"]) &&
+      isset($_POST["centavos"]) &&
+      isset($_POST["slct_tipo_producto"]) &&
+     ){
+      
      }
   };
 
