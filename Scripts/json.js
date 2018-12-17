@@ -96,12 +96,13 @@ function agregarFacturacion(e){
   e.preventDefault();
 
   var peticion = new XMLHttpRequest();
-  peticion.open("POST", '../admin/ajax_factura.php');
+  peticion.open("POST", '../admin/ajax_factura.php', true);
 
+  peticion.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+  
   cajero = form_facturar.id_cajero.value.trim();
   fecha = form_facturar.fecha_emision.value.trim();
   var parametros = 'codigo_usuario=' + cajero + '$fecha=' + fecha + '$sub_total=' + subtotal_factura + '$impuesto=' + impuesto_factura + '$total=' + total_factura + '$productos='+ arr_productos + '$cantidades='+arr_cantidades;
-  peticion.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
   console.log(parametros);
 
   peticion.send(parametros);
