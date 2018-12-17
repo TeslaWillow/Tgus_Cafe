@@ -96,9 +96,17 @@
                     <p>ISV 15%: <span id="impuesto">0 L.</span></p>
                     <p>Total a pagar: <span id="total">0 L.</span></p>
                     <!-- Botones -->
-                    <button type="submit" name="imprimir">Imprimir</button>
+                    <button type="submit" name="imprimir" id="imprimir">Imprimir</button>
                   </div>
                 </div>
+                <!-- NO VISIBLES -->
+                  <input class="form-control" style="display:none;" type="text" id="codigo_cajero_enviar" name="codigo_cajero_enviar" value="">
+                  <input class="form-control" style="display:none;" type="text" id="fecha_enviar" name="fecha_enviar" value="">
+                  <input class="form-control" style="display:none;" type="text" id="sub_total_enviar" name="sub_total_enviar" value="">
+                  <input class="form-control" style="display:none;" type="text" id="impuesto_enviar" name="impuesto_enviar" value="">
+                  <input class="form-control" style="display:none;" type="text" id="total_enviar" name="total_enviar" value="">
+                  <input class="form-control" style="display:none;" type="text" id="productos_enviar" name="productos_enviar" value="">
+                  <input class="form-control" style="display:none;" type="text" id="cantidad_enviar" name="cantidad_enviar" value="">
                 </form>
               </div>
             </div>

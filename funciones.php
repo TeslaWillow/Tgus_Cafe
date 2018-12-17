@@ -163,7 +163,7 @@ function set_Evento(
     echo "Hubo un problema durante la insersion de datos";
   }
 }
-function set_Cliente($conn, $nombre_producto, $precio, $codigo_tipo_producto){
+function set_Cliente($conn, $nombre_cliente, $apellido_cliente, $codigo_direccion, $codigo_tipo_cliente){
   try {
     $sent_persona = $conn -> prepare("
     INSERT INTO `tbl_personas` (`CODIGO_PERSONA`, `NOMBRE`, `APELLIDO`, `CODIGO_DIRECCION`)
@@ -318,6 +318,40 @@ function get_Producto($conn){
 
   return $resultado;
 }
-
-
+//FUNCIONES PARA CREAR FACTURAS
+function get_Ultima_Factura($conn){
+  $setn_codigo = $conn -> prepare("
+  SELECT MAX(A.CODIGO_FACTURA) AS ID 
+  FROM tbl_facturas A;
+  "
+  );
+  $setn_codigo -> execute();
+  $codigo_factura = $setn_codigo -> fetchAll();
+    
+  $codigo_factura = $codigo_factura[0]["ID"];
+  return $codigo_factura;
+}
+function set_Factura($conn, $fecha, $sub_total, $impuesto, $total, $codigo_usuario){
+  //INSERSION SQL A LA TABLA FACTURA
+  $sent_factura = $conn -> prepare("
+  INSERT INTO `tbl_facturas` (`CODIGO_FACTURA`, `FECHA`, `SUBTOTAL`, `IMPUESTO`, `TOTAL`, `CODIGO_USUARIO`)
+  VALUES (NULL, '$fecha', '$sub_total', '$impuesto', '$total', '$codigo_usuario');
+  ");
+  $sent_factura -> execute();
+}
+function set_Factura_X_Producto($conn, $productos, $cantidades, $codigo_factura){
+  $productos = explode(",",$productos);
+  $cantidades = explode(",",$cantidades);
+  for($i = 0; $i < count($productos) ; $i++){
+    for($j = 0; $j < $cantidades[$i]; $j++){
+        $producto = $productos[$i];
+        $sent_factura_x_producto = $conn -> prepare("
+        INSERT INTO `tbl_productos_x_facturas` (`CODIGO_PRODUCTO`, `CODIGO_FACTURA`)
+        VALUES ('$producto', '$codigo_factura');
+        "
+        );
+        $sent_factura_x_producto -> execute();
+    };
+};
+}
 ?>

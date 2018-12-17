@@ -25,7 +25,6 @@
         return true;
     };
     
-    $respuesta = [];
     if(true){
        $respuesta = [];
        try{
@@ -46,7 +45,7 @@
     
         $codigo_factura = $codigo_factura[0]["CODIGO_FACTURA"];
         //CICLO PARA INSERTAR DATOS EN LA TABLA TBL_PRODUCTOS_X_FACTURA
-        for($i = 0; $i < count($productos) ; $i++){
+/*      for($i = 0; $i < count($productos) ; $i++){
             for($j = 0; $j < $cantidades[$i]; $j++){
                 $producto = $productos[$i];
                 $sent_factura_x_producto = $conn -> prepare("
@@ -56,13 +55,13 @@
                 );
                 $sent_factura_x_producto -> execute();
             };
-        };
+        }; */
        }catch(\Exception $e){
         //Variable de retorno false
         $respuesta = ["error" => true];
        }
     }else{
         $respuesta = ["error" => false];
-    }; 
+    };  
     echo json_encode($respuesta);
 ?>

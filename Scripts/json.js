@@ -6,7 +6,8 @@ var btn_agregar = document.getElementById("agregar"),
     form_facturar = document.getElementById("form_facturar"),
     campo_subtotal =document.getElementById("subtotal"),
     campo_impuesto =document.getElementById("impuesto"),
-    campo_total =document.getElementById("total");
+    campo_total = document.getElementById("total"),
+    btn_imprimir = document.getElementById("imprimir");
 //Declaracion de variables 
 var cajero,
     fecha,
@@ -92,23 +93,35 @@ btn_agregar.addEventListener('click', function(){
 //--------------------------------------------------------------------
 // FUNCIONES Y EVENTOS PARA INSERTAR EN LA BD LA FACTURA
 //--------------------------------------------------------------------
-function agregarFacturacion(e){
+/* function agregarFacturacion(e){
   e.preventDefault();
 
-  var peticion = new XMLHttpRequest();
-  peticion.open("POST", '../admin/ajax_factura.php', true);
+   var envio = new XMLHttpRequest();
+  envio.open('POST', '../admin/ajax_factura.php');
 
-  peticion.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-  
+  envio.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+ 
   cajero = form_facturar.id_cajero.value.trim();
   fecha = form_facturar.fecha_emision.value.trim();
-  var parametros = 'codigo_usuario=' + cajero + '$fecha=' + fecha + '$sub_total=' + subtotal_factura + '$impuesto=' + impuesto_factura + '$total=' + total_factura + '$productos='+ arr_productos + '$cantidades='+arr_cantidades;
+ var parametros = 'codigo_usuario=' + cajero + '$fecha=' + fecha + '$sub_total=' + subtotal_factura + '$impuesto=' + impuesto_factura + '$total=' + total_factura;
   console.log(parametros);
 
-  peticion.send(parametros);
-}
+  envio.send(parametros); 
+} */
 //Evento del BTN de imprimir y terminar
-form_facturar.addEventListener('submit', function(e){
+/* form_facturar.addEventListener('submit', function(e){
   agregarFacturacion(e);
-});
+}); */
 
+btn_imprimir.addEventListener('mouseover', function(){
+  cajero = form_facturar.id_cajero.value.trim();
+  fecha = form_facturar.fecha_emision.value.trim();
+
+  form_facturar.codigo_cajero_enviar.value = cajero;
+  form_facturar.fecha_enviar.value = fecha;
+  form_facturar.sub_total_enviar.value = subtotal_factura;
+  form_facturar.impuesto_enviar.value = impuesto_factura;
+  form_facturar.total_enviar.value = total_factura;
+  form_facturar.productos_enviar.value = arr_productos;
+  form_facturar.cantidad_enviar.value = arr_cantidades;
+});
