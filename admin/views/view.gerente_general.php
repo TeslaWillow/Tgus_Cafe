@@ -206,7 +206,7 @@
                   </div>
                   <!-- Tipo Producto -->
                   <div class="d-flex flex-row mt-3">
-                    <label for="slct_tipo_producto" class="col-2 col-form-label">Dirección Cliente: </label>
+                    <label for="slct_tipo_producto" class="col-2 col-form-label">Tipo Producto: </label>
                     <select name="slct_tipo_producto" id="slct_tipo_producto" class="custom-select col-10 mt-2" required>
                       <option value="" disabled selected>Seleccione el tipo de producto</option>
                       <?php foreach ($slct_Tipo_Producto  as $row): ?>
