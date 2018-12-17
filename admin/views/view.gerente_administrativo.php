@@ -54,7 +54,7 @@
               <!-- Botones -->
               <div class="botones d-flex justify-content-end">
                 <button type="submit" class="btn btn-primary btn-lg btn-block">Buscar</button>
-                <button class="rojo" type="button" name="Imprimir" id="Imprimir">Imprimir</button>
+                <button class="rojo" type="button" name="Imprimir" id="Imprimir" onclick="imprimir()">Imprimir</button>
               </div>
               </form>
             </div>
@@ -68,21 +68,21 @@
                   <div class="d-flex flex-row">
                     <label for="nombre_empleado" class="col-2 col-form-label">Nombre empleado:</label>
                     <div class="col-10">
-                      <input class="form-control" type="text" id="nombre_empleado" name="nombre_empleado" required>
+                      <input class="form-control" type="text" id="nombre_empleado" name="nombre_empleado" onfocusout="validar_Formulario_Clientes()" required>
                     </div>
                   </div>
                   <!-- Apellido Empleado -->
                   <div class="d-flex flex-row">
                     <label for="apellido_empleado" class="col-2 col-form-label">Apellido empleado:</label>
                     <div class="col-10">
-                      <input class="form-control" type="text" id="apellido_empleado" name="apellido_empleado" required>
+                      <input class="form-control" type="text" id="apellido_empleado" name="apellido_empleado" onfocusout="validar_Formulario_Clientes()" required>
                     </div>
                   </div>
                   <!-- ID Empleado -->
                   <div class="d-flex flex-row">
                     <label for="id_empleado" class="col-2 col-form-label">ID:</label>
                     <div class="col-10">
-                      <input class="form-control" type="text" id="id_empleado" name="id_empleado" required>
+                      <input class="form-control" type="text" id="id_empleado" name="id_empleado" onfocusout="verificar_ID()" required>
                     </div>
                   </div>
                   <!-- Fecha Ingreso -->
@@ -96,7 +96,7 @@
                   <div class="d-flex flex-row">
                     <label for="sueldo" class="col-2 col-form-label">Sueldo:</label>
                     <div class="col-10">
-                      <input class="form-control" type="text" id="sueldo" name="sueldo" required>
+                      <input class="form-control" type="number" id="sueldo" name="sueldo" min="1" max="99999" required>
                     </div>
                   </div>
                   <!-- Dirección -->

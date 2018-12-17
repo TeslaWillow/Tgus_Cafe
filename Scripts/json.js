@@ -93,7 +93,8 @@ btn_agregar.addEventListener('click', function(){
 //--------------------------------------------------------------------
 // FUNCIONES Y EVENTOS PARA INSERTAR EN LA BD LA FACTURA
 //--------------------------------------------------------------------
-/* function agregarFacturacion(e){
+/*
+ function agregarFacturacion(e){
   e.preventDefault();
 
    var envio = new XMLHttpRequest();
@@ -125,3 +126,4 @@ btn_imprimir.addEventListener('mouseover', function(){
   form_facturar.productos_enviar.value = arr_productos;
   form_facturar.cantidad_enviar.value = arr_cantidades;
 });
+

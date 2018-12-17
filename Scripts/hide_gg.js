@@ -14,7 +14,7 @@ var txt_apellido = document.getElementById("apellido_cliente");
 var btn_submit_cliente = document.getElementById("btn_crear_cliente");
 //Formularios
 var form_cliente =document.getElementById("agregar_cliente");
-var form_producto =document.getElementById("agregar_producto");
+var form_producto = document.getElementById("agregar_producto");
 //TOGGLE: VISUALIZA LA OPCION QUE SE LE DE CLICK OCULTANDO LAS DEMAS
 function toggle_Agendar_Eventos() {
   btn_ag_eventos.classList.add("btn_active");
@@ -82,4 +82,11 @@ function validar_Formulario_Clientes(){
   }else{
     btn_submit_cliente.style.display = "none";
   }
+}
+//Imprimiendo
+function imprimir(){
+  alert("imprimiendo...");
+  setTimeout(function(){
+    alert("Todo correcto!");
+  }, 1000);
 }

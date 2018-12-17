@@ -68,7 +68,7 @@
               <!-- Botones -->
               <div class="botones d-flex justify-content-end">
                 <button type="submit" class="btn btn-primary btn-lg btn-block">Buscar</button>
-                <button class="rojo" type="button" name="Imprimir" id="Imprimir">Imprimir</button>
+                <button class="rojo" type="button" name="Imprimir" id="Imprimir" onclick="imprimir()">Imprimir</button>
               </div>
               </form>
             </div>
@@ -217,7 +217,7 @@
                 </div>
               <!-- Botones -->
                 <div class="botones d-flex justify-content-end mt-3">
-                  <button type="button" name="limpiar" id="limpiar" class="naranja"  onclick="limpiar_Formulario_Agregar_Cliente()">Limpiar</button>
+                  <button type="button" name="limpiar" id="limpiar" class="naranja"  onclick="limpiar_Formulario_Agregar_Producto()">Limpiar</button>
                   <button type="submit" name="btn_crear_producto" id="btn_crear_producto" class="rojo" value="1">Agregar producto</button>
                 </div>
               </form>
